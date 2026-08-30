@@ -1,0 +1,2077 @@
+{
+  "company": "Harbourgate Coffee Roasters",
+  "description": "An invented specialty coffee roaster, used here as a worked example. Around sixty people: one roastery, about a hundred and eighty wholesale cafes, a webshop with a subscription, and a bar at the front of the building. No real company, and none of the numbers are anybody's.",
+  "actors": [
+    {
+      "id": "ops-director",
+      "name": "Operations Director",
+      "kind": "role"
+    },
+    {
+      "id": "head-of-coffee",
+      "name": "Head of Coffee",
+      "kind": "role"
+    },
+    {
+      "id": "green-buyer",
+      "name": "Green Buyer",
+      "kind": "role"
+    },
+    {
+      "id": "production-manager",
+      "name": "Production Manager",
+      "kind": "role"
+    },
+    {
+      "id": "roasting-team",
+      "name": "Roasting Team",
+      "kind": "team",
+      "notes": "Four roasters across two shifts"
+    },
+    {
+      "id": "qc-lead",
+      "name": "Quality Lead",
+      "kind": "role"
+    },
+    {
+      "id": "wholesale-lead",
+      "name": "Head of Wholesale",
+      "kind": "role"
+    },
+    {
+      "id": "account-managers",
+      "name": "Account Management Team",
+      "kind": "team",
+      "notes": "Three, split by region"
+    },
+    {
+      "id": "training-team",
+      "name": "Barista Training Team",
+      "kind": "team"
+    },
+    {
+      "id": "ecommerce-manager",
+      "name": "Ecommerce Manager",
+      "kind": "role"
+    },
+    {
+      "id": "marketing-lead",
+      "name": "Marketing Lead",
+      "kind": "role"
+    },
+    {
+      "id": "support-team",
+      "name": "Customer Support Team",
+      "kind": "team"
+    },
+    {
+      "id": "warehouse-lead",
+      "name": "Warehouse Lead",
+      "kind": "role"
+    },
+    {
+      "id": "packing-team",
+      "name": "Packing Team",
+      "kind": "team",
+      "notes": "Six people, more at Christmas"
+    },
+    {
+      "id": "drivers",
+      "name": "Delivery Drivers",
+      "kind": "team",
+      "notes": "Two vans, city rounds only"
+    },
+    {
+      "id": "finance-manager",
+      "name": "Finance Manager",
+      "kind": "role"
+    },
+    {
+      "id": "bookkeeper",
+      "name": "Bookkeeper",
+      "kind": "role",
+      "notes": "Part time, three days a week"
+    },
+    {
+      "id": "people-lead",
+      "name": "People Lead",
+      "kind": "role"
+    },
+    {
+      "id": "erp",
+      "name": "Inventory and Orders ERP",
+      "kind": "system",
+      "notes": "Screens only, no public API"
+    },
+    {
+      "id": "roast-control",
+      "name": "Roast Control Software",
+      "kind": "system",
+      "notes": "Runs on the roaster's own PC"
+    },
+    {
+      "id": "webshop",
+      "name": "Webshop Platform",
+      "kind": "system",
+      "notes": "Full REST API"
+    },
+    {
+      "id": "accounting-system",
+      "name": "Accounting System",
+      "kind": "system"
+    },
+    {
+      "id": "carrier",
+      "name": "Parcel Carrier",
+      "kind": "external"
+    },
+    {
+      "id": "importer",
+      "name": "Green Coffee Importer",
+      "kind": "external",
+      "notes": "Two of them, one portal each"
+    }
+  ],
+  "artifacts": [
+    {
+      "id": "importer-offer-sheet",
+      "name": "Importer offer sheet",
+      "form": "semi_structured",
+      "boundary": "inbound",
+      "notes": "A spreadsheet per importer, laid out differently each season"
+    },
+    {
+      "id": "green-sample",
+      "name": "Green coffee sample",
+      "form": "unstructured",
+      "boundary": "inbound",
+      "notes": "200g in a bag, with a lot number on it"
+    },
+    {
+      "id": "green-delivery-note",
+      "name": "Green delivery note",
+      "form": "semi_structured",
+      "boundary": "inbound"
+    },
+    {
+      "id": "wholesale-agreement",
+      "name": "Signed wholesale agreement",
+      "form": "semi_structured",
+      "boundary": "inbound"
+    },
+    {
+      "id": "customer-order-message",
+      "name": "Wholesale order message",
+      "form": "unstructured",
+      "boundary": "inbound",
+      "notes": "Email, WhatsApp, and about a fifth by phone"
+    },
+    {
+      "id": "payment-failure",
+      "name": "Payment failure notice",
+      "form": "structured",
+      "boundary": "inbound",
+      "notes": "Webhook from the payment processor"
+    },
+    {
+      "id": "bank-statement",
+      "name": "Bank statement",
+      "form": "structured",
+      "boundary": "inbound"
+    },
+    {
+      "id": "supplier-invoice",
+      "name": "Supplier invoice",
+      "form": "semi_structured",
+      "boundary": "inbound",
+      "notes": "PDF, one layout per supplier"
+    },
+    {
+      "id": "support-ticket",
+      "name": "Customer message",
+      "form": "unstructured",
+      "boundary": "inbound"
+    },
+    {
+      "id": "subscription-feedback",
+      "name": "Subscription feedback",
+      "form": "unstructured",
+      "boundary": "inbound",
+      "notes": "Free text from the monthly survey"
+    },
+    {
+      "id": "job-application",
+      "name": "Job application",
+      "form": "semi_structured",
+      "boundary": "inbound"
+    },
+    {
+      "id": "timesheet",
+      "name": "Timesheet",
+      "form": "semi_structured",
+      "boundary": "inbound",
+      "notes": "Filled in by staff, outside anything mapped here"
+    },
+    {
+      "id": "maintenance-request",
+      "name": "Maintenance request",
+      "form": "unstructured",
+      "boundary": "inbound"
+    },
+    {
+      "id": "house-taste-standard",
+      "name": "House taste standard",
+      "form": "tacit",
+      "boundary": "inbound",
+      "notes": "What the coffee is supposed to taste like. Two people know it and it is written down nowhere"
+    },
+    {
+      "id": "green-demand-forecast",
+      "name": "Green demand forecast",
+      "form": "structured",
+      "boundary": "internal"
+    },
+    {
+      "id": "green-contract",
+      "name": "Green coffee contract",
+      "form": "semi_structured",
+      "boundary": "internal"
+    },
+    {
+      "id": "green-inventory-record",
+      "name": "Green inventory record",
+      "form": "structured",
+      "boundary": "internal"
+    },
+    {
+      "id": "green-stock-variance",
+      "name": "Green stock variance",
+      "form": "structured",
+      "boundary": "internal"
+    },
+    {
+      "id": "green-quality-record",
+      "name": "Green quality record",
+      "form": "structured",
+      "boundary": "internal",
+      "notes": "Moisture, density, screen size"
+    },
+    {
+      "id": "sample-roast-batch",
+      "name": "Sample roast",
+      "form": "unstructured",
+      "boundary": "internal"
+    },
+    {
+      "id": "cupping-score",
+      "name": "Cupping score sheet",
+      "form": "semi_structured",
+      "boundary": "internal"
+    },
+    {
+      "id": "roast-plan",
+      "name": "Weekly roast plan",
+      "form": "structured",
+      "boundary": "internal"
+    },
+    {
+      "id": "roast-profile",
+      "name": "Roast profile",
+      "form": "structured",
+      "boundary": "internal",
+      "notes": "Curve and drop temperature per coffee"
+    },
+    {
+      "id": "roast-batch-record",
+      "name": "Roast batch record",
+      "form": "structured",
+      "boundary": "internal"
+    },
+    {
+      "id": "roasted-coffee-stock",
+      "name": "Roasted coffee in bulk",
+      "form": "structured",
+      "boundary": "internal"
+    },
+    {
+      "id": "batch-label",
+      "name": "Batch label",
+      "form": "structured",
+      "boundary": "internal",
+      "notes": "Carries the roast date and the lot"
+    },
+    {
+      "id": "finished-goods-stock",
+      "name": "Finished goods stock",
+      "form": "structured",
+      "boundary": "internal"
+    },
+    {
+      "id": "yield-report",
+      "name": "Roast yield report",
+      "form": "structured",
+      "boundary": "internal"
+    },
+    {
+      "id": "qc-verdict",
+      "name": "Batch QC verdict",
+      "form": "structured",
+      "boundary": "internal"
+    },
+    {
+      "id": "quality-incident",
+      "name": "Quality incident",
+      "form": "semi_structured",
+      "boundary": "internal"
+    },
+    {
+      "id": "wholesale-order-book",
+      "name": "Wholesale order book",
+      "form": "structured",
+      "boundary": "internal"
+    },
+    {
+      "id": "customer-record",
+      "name": "Customer record",
+      "form": "structured",
+      "boundary": "internal"
+    },
+    {
+      "id": "equipment-install-job",
+      "name": "Equipment install job",
+      "form": "structured",
+      "boundary": "internal"
+    },
+    {
+      "id": "training-record",
+      "name": "Barista training record",
+      "form": "semi_structured",
+      "boundary": "internal"
+    },
+    {
+      "id": "churn-alert",
+      "name": "Quiet account alert",
+      "form": "structured",
+      "boundary": "internal"
+    },
+    {
+      "id": "account-note",
+      "name": "Account call note",
+      "form": "unstructured",
+      "boundary": "internal"
+    },
+    {
+      "id": "wholesale-price-list",
+      "name": "Wholesale price list",
+      "form": "structured",
+      "boundary": "internal"
+    },
+    {
+      "id": "cost-model",
+      "name": "Cost per kilo model",
+      "form": "structured",
+      "boundary": "internal"
+    },
+    {
+      "id": "sales-invoice",
+      "name": "Sales invoice",
+      "form": "structured",
+      "boundary": "internal"
+    },
+    {
+      "id": "payment-allocation",
+      "name": "Payment allocation",
+      "form": "structured",
+      "boundary": "internal"
+    },
+    {
+      "id": "payable-record",
+      "name": "Payable record",
+      "form": "structured",
+      "boundary": "internal"
+    },
+    {
+      "id": "management-accounts",
+      "name": "Management accounts",
+      "form": "structured",
+      "boundary": "internal"
+    },
+    {
+      "id": "subscription-roster",
+      "name": "Subscription dispatch roster",
+      "form": "structured",
+      "boundary": "internal"
+    },
+    {
+      "id": "dtc-order",
+      "name": "Webshop order",
+      "form": "structured",
+      "boundary": "internal"
+    },
+    {
+      "id": "dtc-coffee-lineup",
+      "name": "Next month's subscription line-up",
+      "form": "structured",
+      "boundary": "internal"
+    },
+    {
+      "id": "parcel",
+      "name": "Packed parcel",
+      "form": "structured",
+      "boundary": "internal"
+    },
+    {
+      "id": "carrier-manifest",
+      "name": "Carrier manifest",
+      "form": "structured",
+      "boundary": "internal"
+    },
+    {
+      "id": "delivery-route",
+      "name": "Delivery route",
+      "form": "structured",
+      "boundary": "internal"
+    },
+    {
+      "id": "delivery-confirmation",
+      "name": "Delivery confirmation",
+      "form": "structured",
+      "boundary": "internal"
+    },
+    {
+      "id": "packaging-stock-level",
+      "name": "Packaging stock level",
+      "form": "structured",
+      "boundary": "internal",
+      "notes": "Bags, boxes, one-way valves"
+    },
+    {
+      "id": "employee-record",
+      "name": "Employee record",
+      "form": "structured",
+      "boundary": "internal"
+    },
+    {
+      "id": "interview-shortlist",
+      "name": "Interview shortlist",
+      "form": "structured",
+      "boundary": "internal"
+    },
+    {
+      "id": "maintenance-log",
+      "name": "Maintenance log",
+      "form": "semi_structured",
+      "boundary": "internal"
+    },
+    {
+      "id": "sample-request",
+      "name": "Sample request",
+      "form": "semi_structured",
+      "boundary": "outbound"
+    },
+    {
+      "id": "traceability-record",
+      "name": "Traceability record",
+      "form": "structured",
+      "boundary": "outbound",
+      "notes": "Goes to the certifier and, on request, the customer"
+    },
+    {
+      "id": "product-page",
+      "name": "Product page",
+      "form": "unstructured",
+      "boundary": "outbound"
+    },
+    {
+      "id": "dunning-message",
+      "name": "Payment reminder",
+      "form": "semi_structured",
+      "boundary": "outbound"
+    },
+    {
+      "id": "subscription-cancellation",
+      "name": "Subscription cancellation",
+      "form": "structured",
+      "boundary": "outbound"
+    },
+    {
+      "id": "payment-charge",
+      "name": "Subscription charge",
+      "form": "structured",
+      "boundary": "outbound"
+    },
+    {
+      "id": "support-reply",
+      "name": "Reply to a customer",
+      "form": "unstructured",
+      "boundary": "outbound"
+    },
+    {
+      "id": "carrier-claim",
+      "name": "Carrier damage claim",
+      "form": "semi_structured",
+      "boundary": "outbound"
+    },
+    {
+      "id": "purchase-order",
+      "name": "Packaging purchase order",
+      "form": "structured",
+      "boundary": "outbound"
+    },
+    {
+      "id": "outgoing-payment",
+      "name": "Supplier payment",
+      "form": "structured",
+      "boundary": "outbound"
+    },
+    {
+      "id": "tax-filing",
+      "name": "VAT return",
+      "form": "structured",
+      "boundary": "outbound"
+    },
+    {
+      "id": "payroll-file",
+      "name": "Payroll file",
+      "form": "structured",
+      "boundary": "outbound"
+    },
+    {
+      "id": "shift-rota",
+      "name": "Shift rota",
+      "form": "structured",
+      "boundary": "outbound"
+    },
+    {
+      "id": "service-visit",
+      "name": "Equipment service visit",
+      "form": "structured",
+      "boundary": "outbound"
+    }
+  ],
+  "functions": [
+    {
+      "id": "sample-request",
+      "name": "Request offer samples",
+      "area": "green buying",
+      "description": "Read what the importers are offering and ask for samples of anything worth cupping.",
+      "owner": "green-buyer",
+      "performers": [
+        "green-buyer"
+      ],
+      "trigger": "schedule",
+      "inputs": [
+        "importer-offer-sheet"
+      ],
+      "outputs": [
+        "sample-request"
+      ],
+      "volume_per_month": 12,
+      "minutes_per_run": 20,
+      "current_state": "manual",
+      "automation": {
+        "decision_type": "judgement",
+        "input_form": "semi_structured",
+        "interface": "ui_only",
+        "change_rate": "stable",
+        "error_cost": "low",
+        "reversibility": "reversible",
+        "oversight": "sampled"
+      },
+      "notes": "Each importer has its own portal and its own spreadsheet layout."
+    },
+    {
+      "id": "sample-roast",
+      "name": "Roast offer samples",
+      "area": "green buying",
+      "description": "Roast each sample on the fixed sample profile so the cupping compares like with like.",
+      "owner": "head-of-coffee",
+      "performers": [
+        "roasting-team"
+      ],
+      "trigger": "event",
+      "inputs": [
+        "green-sample"
+      ],
+      "outputs": [
+        "sample-roast-batch"
+      ],
+      "volume_per_month": 40,
+      "minutes_per_run": 25,
+      "current_state": "manual",
+      "automation": {
+        "decision_type": "deterministic",
+        "input_form": "unstructured",
+        "interface": "offline",
+        "change_rate": "stable",
+        "error_cost": "low",
+        "reversibility": "reversible",
+        "oversight": "none_needed"
+      },
+      "notes": "The sample roaster is a standalone machine with no logging at all."
+    },
+    {
+      "id": "cupping-evaluation",
+      "name": "Cup and score samples",
+      "area": "green buying",
+      "description": "Taste the sample roasts blind, score them, and decide which lots are worth a contract.",
+      "owner": "head-of-coffee",
+      "performers": [
+        "head-of-coffee",
+        "qc-lead"
+      ],
+      "trigger": "event",
+      "inputs": [
+        "sample-roast-batch",
+        "house-taste-standard"
+      ],
+      "outputs": [
+        "cupping-score"
+      ],
+      "volume_per_month": 40,
+      "minutes_per_run": 30,
+      "current_state": "manual",
+      "automation": {
+        "decision_type": "discretionary",
+        "input_form": "tacit",
+        "interface": "offline",
+        "change_rate": "periodic",
+        "error_cost": "moderate",
+        "reversibility": "reversible",
+        "oversight": "every_case"
+      },
+      "notes": "The thing being judged is a taste. There is no version of this a machine does."
+    },
+    {
+      "id": "green-demand-forecast",
+      "name": "Forecast green demand",
+      "area": "green buying",
+      "description": "Work out how much of each origin will be needed over the next two quarters.",
+      "owner": "green-buyer",
+      "performers": [
+        "green-buyer",
+        "production-manager"
+      ],
+      "trigger": "schedule",
+      "inputs": [
+        "roast-plan",
+        "wholesale-order-book",
+        "subscription-roster"
+      ],
+      "outputs": [
+        "green-demand-forecast"
+      ],
+      "volume_per_month": 1,
+      "minutes_per_run": 240,
+      "current_state": "manual",
+      "automation": {
+        "decision_type": "judgement",
+        "input_form": "structured",
+        "interface": "bulk_export",
+        "change_rate": "periodic",
+        "error_cost": "moderate",
+        "reversibility": "reversible",
+        "oversight": "sampled"
+      }
+    },
+    {
+      "id": "contract-negotiation",
+      "name": "Negotiate green contracts",
+      "area": "green buying",
+      "description": "Agree price, volume and shipment window with importers and direct-trade farms.",
+      "owner": "green-buyer",
+      "performers": [
+        "green-buyer",
+        "head-of-coffee"
+      ],
+      "trigger": "event",
+      "inputs": [
+        "cupping-score",
+        "importer-offer-sheet",
+        "green-demand-forecast"
+      ],
+      "outputs": [
+        "green-contract"
+      ],
+      "volume_per_month": 3,
+      "minutes_per_run": 180,
+      "current_state": "manual",
+      "automation": {
+        "decision_type": "discretionary",
+        "input_form": "unstructured",
+        "interface": "ui_only",
+        "change_rate": "periodic",
+        "error_cost": "high",
+        "reversibility": "costly_to_reverse",
+        "oversight": "every_case"
+      }
+    },
+    {
+      "id": "green-intake",
+      "name": "Book green coffee in",
+      "area": "green buying",
+      "description": "Check a delivery against the contract and book the sacks into the warehouse.",
+      "owner": "warehouse-lead",
+      "performers": [
+        "warehouse-lead"
+      ],
+      "trigger": "event",
+      "inputs": [
+        "green-delivery-note",
+        "green-contract"
+      ],
+      "outputs": [
+        "green-inventory-record"
+      ],
+      "volume_per_month": 8,
+      "minutes_per_run": 35,
+      "current_state": "manual",
+      "automation": {
+        "decision_type": "deterministic",
+        "input_form": "semi_structured",
+        "interface": "ui_only",
+        "change_rate": "stable",
+        "error_cost": "moderate",
+        "reversibility": "reversible",
+        "oversight": "sampled"
+      }
+    },
+    {
+      "id": "green-stock-count",
+      "name": "Reconcile green stock",
+      "area": "green buying",
+      "description": "Compare what the ERP thinks is in the warehouse against what is actually on the pallets.",
+      "owner": "warehouse-lead",
+      "performers": [
+        "warehouse-lead"
+      ],
+      "trigger": "schedule",
+      "inputs": [
+        "green-inventory-record"
+      ],
+      "outputs": [
+        "green-stock-variance"
+      ],
+      "volume_per_month": 4,
+      "minutes_per_run": 90,
+      "current_state": "manual",
+      "automation": {
+        "decision_type": "deterministic",
+        "input_form": "structured",
+        "interface": "bulk_export",
+        "change_rate": "stable",
+        "error_cost": "moderate",
+        "reversibility": "reversible",
+        "oversight": "sampled"
+      }
+    },
+    {
+      "id": "roast-plan",
+      "name": "Build the weekly roast plan",
+      "area": "production",
+      "description": "Turn next week's orders into batches, in an order the roasters can actually run.",
+      "owner": "production-manager",
+      "performers": [
+        "production-manager"
+      ],
+      "trigger": "schedule",
+      "inputs": [
+        "wholesale-order-book",
+        "subscription-roster",
+        "green-inventory-record"
+      ],
+      "outputs": [
+        "roast-plan"
+      ],
+      "volume_per_month": 4,
+      "minutes_per_run": 150,
+      "current_state": "manual",
+      "automation": {
+        "decision_type": "judgement",
+        "input_form": "structured",
+        "interface": "bulk_export",
+        "change_rate": "periodic",
+        "error_cost": "high",
+        "reversibility": "reversible",
+        "oversight": "sampled"
+      },
+      "notes": "Getting this wrong means a cafe opens on Monday with no coffee."
+    },
+    {
+      "id": "roast-execution",
+      "name": "Run roast batches",
+      "area": "production",
+      "description": "Roast each batch on its profile and record what the machine did.",
+      "owner": "production-manager",
+      "performers": [
+        "roasting-team",
+        "roast-control"
+      ],
+      "trigger": "schedule",
+      "inputs": [
+        "roast-plan",
+        "green-inventory-record",
+        "roast-profile"
+      ],
+      "outputs": [
+        "roast-batch-record",
+        "roasted-coffee-stock"
+      ],
+      "volume_per_month": 260,
+      "minutes_per_run": 22,
+      "current_state": "assisted",
+      "automation": {
+        "decision_type": "deterministic",
+        "input_form": "structured",
+        "interface": "ui_only",
+        "change_rate": "stable",
+        "error_cost": "moderate",
+        "reversibility": "costly_to_reverse",
+        "oversight": "sampled"
+      },
+      "notes": "The roast software drives the machine but exports nothing without a person clicking."
+    },
+    {
+      "id": "roast-profile-tuning",
+      "name": "Adjust roast profiles",
+      "area": "production",
+      "description": "Change the curve when a new crop lands and the old profile stops tasting right.",
+      "owner": "head-of-coffee",
+      "performers": [
+        "head-of-coffee",
+        "production-manager"
+      ],
+      "trigger": "event",
+      "inputs": [
+        "cupping-score",
+        "roast-batch-record",
+        "green-quality-record"
+      ],
+      "outputs": [
+        "roast-profile"
+      ],
+      "volume_per_month": 6,
+      "minutes_per_run": 90,
+      "current_state": "manual",
+      "automation": {
+        "decision_type": "discretionary",
+        "input_form": "unstructured",
+        "interface": "ui_only",
+        "change_rate": "periodic",
+        "error_cost": "high",
+        "reversibility": "reversible",
+        "oversight": "every_case"
+      }
+    },
+    {
+      "id": "batch-labelling",
+      "name": "Print and apply batch labels",
+      "area": "production",
+      "description": "Generate the label for each batch: coffee, roast date, lot, weight.",
+      "owner": "production-manager",
+      "performers": [
+        "roast-control"
+      ],
+      "trigger": "event",
+      "inputs": [
+        "roast-batch-record"
+      ],
+      "outputs": [
+        "batch-label"
+      ],
+      "volume_per_month": 260,
+      "minutes_per_run": 4,
+      "current_state": "assisted",
+      "automation": {
+        "decision_type": "deterministic",
+        "input_form": "structured",
+        "interface": "api",
+        "change_rate": "stable",
+        "error_cost": "moderate",
+        "reversibility": "reversible",
+        "oversight": "sampled"
+      }
+    },
+    {
+      "id": "packaging-run",
+      "name": "Pack roasted coffee",
+      "area": "production",
+      "description": "Weigh, fill, seal and label retail bags from bulk.",
+      "owner": "production-manager",
+      "performers": [
+        "packing-team"
+      ],
+      "trigger": "schedule",
+      "inputs": [
+        "roasted-coffee-stock",
+        "batch-label",
+        "qc-verdict"
+      ],
+      "outputs": [
+        "finished-goods-stock"
+      ],
+      "volume_per_month": 240,
+      "minutes_per_run": 12,
+      "current_state": "manual",
+      "automation": {
+        "decision_type": "deterministic",
+        "input_form": "structured",
+        "interface": "offline",
+        "change_rate": "stable",
+        "error_cost": "moderate",
+        "reversibility": "reversible",
+        "oversight": "sampled"
+      }
+    },
+    {
+      "id": "production-yield-review",
+      "name": "Review roast yield",
+      "area": "production",
+      "description": "Compare green in against roasted out per batch and chase anything outside the band.",
+      "owner": "production-manager",
+      "performers": [
+        "production-manager"
+      ],
+      "trigger": "schedule",
+      "inputs": [
+        "roast-batch-record",
+        "green-inventory-record"
+      ],
+      "outputs": [
+        "yield-report"
+      ],
+      "volume_per_month": 1,
+      "minutes_per_run": 120,
+      "current_state": "manual",
+      "automation": {
+        "decision_type": "deterministic",
+        "input_form": "structured",
+        "interface": "bulk_export",
+        "change_rate": "stable",
+        "error_cost": "low",
+        "reversibility": "reversible",
+        "oversight": "sampled"
+      }
+    },
+    {
+      "id": "production-cupping",
+      "name": "Cup production batches",
+      "area": "quality",
+      "description": "Taste a sample from every production day against the reference for that coffee.",
+      "owner": "qc-lead",
+      "performers": [
+        "qc-lead"
+      ],
+      "trigger": "schedule",
+      "inputs": [
+        "roast-batch-record",
+        "house-taste-standard"
+      ],
+      "outputs": [
+        "qc-verdict"
+      ],
+      "volume_per_month": 20,
+      "minutes_per_run": 45,
+      "current_state": "manual",
+      "automation": {
+        "decision_type": "judgement",
+        "input_form": "tacit",
+        "interface": "offline",
+        "change_rate": "stable",
+        "error_cost": "high",
+        "reversibility": "reversible",
+        "oversight": "every_case"
+      },
+      "notes": "Comparison against a standard, not free judgement. The standard is the problem: it is in two people's heads."
+    },
+    {
+      "id": "moisture-density-check",
+      "name": "Measure moisture and density",
+      "area": "quality",
+      "description": "Run the intake measurements on every arriving lot and file the numbers.",
+      "owner": "qc-lead",
+      "performers": [
+        "qc-lead"
+      ],
+      "trigger": "event",
+      "inputs": [
+        "green-inventory-record"
+      ],
+      "outputs": [
+        "green-quality-record"
+      ],
+      "volume_per_month": 8,
+      "minutes_per_run": 25,
+      "current_state": "manual",
+      "automation": {
+        "decision_type": "deterministic",
+        "input_form": "structured",
+        "interface": "ui_only",
+        "change_rate": "stable",
+        "error_cost": "moderate",
+        "reversibility": "reversible",
+        "oversight": "sampled"
+      }
+    },
+    {
+      "id": "customer-complaint-triage",
+      "name": "Triage quality complaints",
+      "area": "quality",
+      "description": "Decide whether a complaint is a one-off, a batch problem, or a recall.",
+      "owner": "qc-lead",
+      "performers": [
+        "qc-lead",
+        "support-team"
+      ],
+      "trigger": "event",
+      "inputs": [
+        "support-ticket"
+      ],
+      "outputs": [
+        "quality-incident"
+      ],
+      "volume_per_month": 9,
+      "minutes_per_run": 40,
+      "current_state": "manual",
+      "automation": {
+        "decision_type": "judgement",
+        "input_form": "unstructured",
+        "interface": "api",
+        "change_rate": "stable",
+        "error_cost": "high",
+        "reversibility": "reversible",
+        "oversight": "every_case"
+      }
+    },
+    {
+      "id": "traceability-audit",
+      "name": "Trace a batch back to a lot",
+      "area": "quality",
+      "description": "Follow a bag on a shelf back through the batch record to the green contract.",
+      "owner": "qc-lead",
+      "performers": [
+        "qc-lead"
+      ],
+      "trigger": "request",
+      "inputs": [
+        "batch-label",
+        "roast-batch-record",
+        "green-inventory-record",
+        "quality-incident"
+      ],
+      "outputs": [
+        "traceability-record"
+      ],
+      "volume_per_month": 2,
+      "minutes_per_run": 120,
+      "current_state": "manual",
+      "automation": {
+        "decision_type": "deterministic",
+        "input_form": "structured",
+        "interface": "bulk_export",
+        "change_rate": "stable",
+        "error_cost": "severe",
+        "reversibility": "reversible",
+        "oversight": "every_case"
+      },
+      "notes": "Every fact needed is already in a database. It is still done by hand, and the certifier asks twice a year."
+    },
+    {
+      "id": "wholesale-order-intake",
+      "name": "Take wholesale orders",
+      "area": "wholesale",
+      "description": "Read the orders that arrive by email, message and phone, and get them into the order book.",
+      "owner": "wholesale-lead",
+      "performers": [
+        "account-managers"
+      ],
+      "trigger": "event",
+      "inputs": [
+        "customer-order-message"
+      ],
+      "outputs": [
+        "wholesale-order-book"
+      ],
+      "volume_per_month": 620,
+      "minutes_per_run": 6,
+      "current_state": "assisted",
+      "automation": {
+        "decision_type": "judgement",
+        "input_form": "unstructured",
+        "interface": "api",
+        "change_rate": "stable",
+        "error_cost": "moderate",
+        "reversibility": "reversible",
+        "oversight": "sampled"
+      },
+      "notes": "About a fifth still arrive as a phone call, which is why this is not one job but two."
+    },
+    {
+      "id": "standing-order-generation",
+      "name": "Generate standing orders",
+      "area": "wholesale",
+      "description": "Raise the recurring orders for accounts on a fixed weekly volume.",
+      "owner": "wholesale-lead",
+      "performers": [
+        "erp"
+      ],
+      "trigger": "schedule",
+      "inputs": [
+        "wholesale-agreement"
+      ],
+      "outputs": [
+        "wholesale-order-book"
+      ],
+      "volume_per_month": 180,
+      "minutes_per_run": 2,
+      "current_state": "automated",
+      "automation": {
+        "decision_type": "deterministic",
+        "input_form": "structured",
+        "interface": "api",
+        "change_rate": "stable",
+        "error_cost": "low",
+        "reversibility": "reversible",
+        "oversight": "none_needed"
+      }
+    },
+    {
+      "id": "new-account-onboarding",
+      "name": "Onboard a wholesale cafe",
+      "area": "wholesale",
+      "description": "Set up a new cafe: record, pricing, first delivery, and an install if they need a grinder.",
+      "owner": "wholesale-lead",
+      "performers": [
+        "account-managers"
+      ],
+      "trigger": "event",
+      "inputs": [
+        "wholesale-agreement"
+      ],
+      "outputs": [
+        "customer-record",
+        "equipment-install-job"
+      ],
+      "volume_per_month": 4,
+      "minutes_per_run": 120,
+      "current_state": "manual",
+      "automation": {
+        "decision_type": "judgement",
+        "input_form": "semi_structured",
+        "interface": "ui_only",
+        "change_rate": "periodic",
+        "error_cost": "moderate",
+        "reversibility": "reversible",
+        "oversight": "every_case"
+      }
+    },
+    {
+      "id": "account-check-in",
+      "name": "Monthly account check-in",
+      "area": "wholesale",
+      "description": "Call the accounts on the list and find out how they are getting on.",
+      "owner": "wholesale-lead",
+      "performers": [
+        "account-managers"
+      ],
+      "trigger": "schedule",
+      "inputs": [
+        "customer-record",
+        "training-record",
+        "churn-alert"
+      ],
+      "outputs": [
+        "account-note"
+      ],
+      "volume_per_month": 60,
+      "minutes_per_run": 25,
+      "current_state": "manual",
+      "automation": {
+        "decision_type": "discretionary",
+        "input_form": "unstructured",
+        "interface": "offline",
+        "change_rate": "stable",
+        "error_cost": "moderate",
+        "reversibility": "reversible",
+        "oversight": "sampled"
+      }
+    },
+    {
+      "id": "price-list-update",
+      "name": "Reissue the wholesale price list",
+      "area": "wholesale",
+      "description": "Rebuild the price list when green costs or the cost model move.",
+      "owner": "wholesale-lead",
+      "performers": [
+        "wholesale-lead",
+        "finance-manager"
+      ],
+      "trigger": "event",
+      "inputs": [
+        "green-contract",
+        "cost-model"
+      ],
+      "outputs": [
+        "wholesale-price-list"
+      ],
+      "volume_per_month": 2,
+      "minutes_per_run": 180,
+      "current_state": "manual",
+      "automation": {
+        "decision_type": "judgement",
+        "input_form": "structured",
+        "interface": "ui_only",
+        "change_rate": "periodic",
+        "error_cost": "high",
+        "reversibility": "reversible",
+        "oversight": "every_case"
+      }
+    },
+    {
+      "id": "churn-watch",
+      "name": "Spot accounts that went quiet",
+      "area": "wholesale",
+      "description": "Find the cafes whose ordering has dropped off before somebody notices at year end.",
+      "owner": "wholesale-lead",
+      "performers": [
+        "wholesale-lead"
+      ],
+      "trigger": "schedule",
+      "inputs": [
+        "wholesale-order-book",
+        "customer-record"
+      ],
+      "outputs": [
+        "churn-alert"
+      ],
+      "volume_per_month": 4,
+      "minutes_per_run": 60,
+      "current_state": "manual",
+      "automation": {
+        "decision_type": "deterministic",
+        "input_form": "structured",
+        "interface": "bulk_export",
+        "change_rate": "stable",
+        "error_cost": "low",
+        "reversibility": "reversible",
+        "oversight": "sampled"
+      }
+    },
+    {
+      "id": "barista-training-visit",
+      "name": "Run barista training",
+      "area": "wholesale",
+      "description": "Spend a morning on a cafe's bar getting their staff and their grinder in shape.",
+      "owner": "wholesale-lead",
+      "performers": [
+        "training-team"
+      ],
+      "trigger": "request",
+      "inputs": [
+        "customer-record"
+      ],
+      "outputs": [
+        "training-record"
+      ],
+      "volume_per_month": 12,
+      "minutes_per_run": 180,
+      "current_state": "manual",
+      "automation": {
+        "decision_type": "discretionary",
+        "input_form": "unstructured",
+        "interface": "offline",
+        "change_rate": "stable",
+        "error_cost": "moderate",
+        "reversibility": "reversible",
+        "oversight": "sampled"
+      }
+    },
+    {
+      "id": "subscription-renewal-run",
+      "name": "Charge and schedule renewals",
+      "area": "direct to consumer",
+      "description": "Take payment for the month's subscriptions and raise the orders behind them.",
+      "owner": "ecommerce-manager",
+      "performers": [
+        "webshop"
+      ],
+      "trigger": "schedule",
+      "inputs": [
+        "subscription-roster"
+      ],
+      "outputs": [
+        "dtc-order",
+        "payment-charge"
+      ],
+      "volume_per_month": 1400,
+      "minutes_per_run": 0.5,
+      "current_state": "automated",
+      "automation": {
+        "decision_type": "deterministic",
+        "input_form": "structured",
+        "interface": "api",
+        "change_rate": "stable",
+        "error_cost": "high",
+        "reversibility": "costly_to_reverse",
+        "oversight": "sampled"
+      },
+      "notes": "Charging people money. Automated, and still watched every month."
+    },
+    {
+      "id": "failed-payment-recovery",
+      "name": "Chase failed payments",
+      "area": "direct to consumer",
+      "description": "Retry a failed card, tell the customer, and cancel after the third try.",
+      "owner": "ecommerce-manager",
+      "performers": [
+        "support-team"
+      ],
+      "trigger": "event",
+      "inputs": [
+        "payment-failure",
+        "subscription-roster"
+      ],
+      "outputs": [
+        "dunning-message",
+        "subscription-cancellation"
+      ],
+      "volume_per_month": 90,
+      "minutes_per_run": 8,
+      "current_state": "manual",
+      "automation": {
+        "decision_type": "deterministic",
+        "input_form": "structured",
+        "interface": "api",
+        "change_rate": "stable",
+        "error_cost": "moderate",
+        "reversibility": "reversible",
+        "oversight": "sampled"
+      },
+      "notes": "The rule is written on a card next to the desk. Nobody has ever put it in software."
+    },
+    {
+      "id": "dtc-order-picking",
+      "name": "Pick and pack webshop orders",
+      "area": "direct to consumer",
+      "description": "Pull the bags for each order, box them, and put the label on.",
+      "owner": "warehouse-lead",
+      "performers": [
+        "packing-team"
+      ],
+      "trigger": "event",
+      "inputs": [
+        "dtc-order",
+        "finished-goods-stock"
+      ],
+      "outputs": [
+        "parcel"
+      ],
+      "volume_per_month": 2200,
+      "minutes_per_run": 4,
+      "current_state": "manual",
+      "automation": {
+        "decision_type": "deterministic",
+        "input_form": "structured",
+        "interface": "offline",
+        "change_rate": "stable",
+        "error_cost": "moderate",
+        "reversibility": "reversible",
+        "oversight": "sampled"
+      },
+      "notes": "The largest single block of hours in the company, and none of it is a software problem."
+    },
+    {
+      "id": "product-page-copy",
+      "name": "Write product pages",
+      "area": "direct to consumer",
+      "description": "Write up a new coffee for the shop: origin, tasting notes, the story.",
+      "owner": "marketing-lead",
+      "performers": [
+        "marketing-lead"
+      ],
+      "trigger": "event",
+      "inputs": [
+        "green-contract",
+        "cupping-score"
+      ],
+      "outputs": [
+        "product-page"
+      ],
+      "volume_per_month": 6,
+      "minutes_per_run": 90,
+      "current_state": "manual",
+      "automation": {
+        "decision_type": "judgement",
+        "input_form": "semi_structured",
+        "interface": "api",
+        "change_rate": "periodic",
+        "error_cost": "low",
+        "reversibility": "reversible",
+        "oversight": "sampled"
+      }
+    },
+    {
+      "id": "subscription-roster-build",
+      "name": "Build the dispatch roster",
+      "area": "direct to consumer",
+      "description": "Work out who gets which coffee in which grind on the next dispatch date.",
+      "owner": "ecommerce-manager",
+      "performers": [
+        "webshop"
+      ],
+      "trigger": "schedule",
+      "inputs": [
+        "dtc-order",
+        "customer-record",
+        "dtc-coffee-lineup"
+      ],
+      "outputs": [
+        "subscription-roster"
+      ],
+      "volume_per_month": 4,
+      "minutes_per_run": 45,
+      "current_state": "automated",
+      "automation": {
+        "decision_type": "deterministic",
+        "input_form": "structured",
+        "interface": "api",
+        "change_rate": "stable",
+        "error_cost": "moderate",
+        "reversibility": "reversible",
+        "oversight": "sampled"
+      }
+    },
+    {
+      "id": "dtc-support-replies",
+      "name": "Answer webshop customers",
+      "area": "direct to consumer",
+      "description": "Reply to the shop inbox: where is my order, change my grind, pause me for a month.",
+      "owner": "ecommerce-manager",
+      "performers": [
+        "support-team"
+      ],
+      "trigger": "continuous",
+      "inputs": [
+        "support-ticket"
+      ],
+      "outputs": [
+        "support-reply"
+      ],
+      "volume_per_month": 380,
+      "minutes_per_run": 7,
+      "current_state": "assisted",
+      "automation": {
+        "decision_type": "judgement",
+        "input_form": "unstructured",
+        "interface": "api",
+        "change_rate": "stable",
+        "error_cost": "moderate",
+        "reversibility": "reversible",
+        "oversight": "sampled"
+      }
+    },
+    {
+      "id": "subscription-feedback-review",
+      "name": "Choose next month's coffees",
+      "area": "direct to consumer",
+      "description": "Read the feedback and pick what goes out to subscribers next month.",
+      "owner": "head-of-coffee",
+      "performers": [
+        "head-of-coffee",
+        "ecommerce-manager"
+      ],
+      "trigger": "schedule",
+      "inputs": [
+        "subscription-feedback",
+        "cupping-score"
+      ],
+      "outputs": [
+        "dtc-coffee-lineup"
+      ],
+      "volume_per_month": 1,
+      "minutes_per_run": 240,
+      "current_state": "manual",
+      "automation": {
+        "decision_type": "discretionary",
+        "input_form": "unstructured",
+        "interface": "ui_only",
+        "change_rate": "periodic",
+        "error_cost": "moderate",
+        "reversibility": "reversible",
+        "oversight": "sampled"
+      }
+    },
+    {
+      "id": "carrier-booking",
+      "name": "Book parcel collections",
+      "area": "logistics",
+      "description": "Hand the day's parcels to the carrier and get the manifest back.",
+      "owner": "warehouse-lead",
+      "performers": [
+        "warehouse-lead"
+      ],
+      "trigger": "schedule",
+      "inputs": [
+        "parcel"
+      ],
+      "outputs": [
+        "carrier-manifest"
+      ],
+      "volume_per_month": 22,
+      "minutes_per_run": 25,
+      "current_state": "assisted",
+      "automation": {
+        "decision_type": "deterministic",
+        "input_form": "structured",
+        "interface": "api",
+        "change_rate": "stable",
+        "error_cost": "moderate",
+        "reversibility": "reversible",
+        "oversight": "none_needed"
+      }
+    },
+    {
+      "id": "wholesale-delivery-routing",
+      "name": "Plan the delivery round",
+      "area": "logistics",
+      "description": "Put the day's wholesale drops into an order the vans can do before the cafes get busy.",
+      "owner": "warehouse-lead",
+      "performers": [
+        "warehouse-lead"
+      ],
+      "trigger": "schedule",
+      "inputs": [
+        "wholesale-order-book",
+        "customer-record"
+      ],
+      "outputs": [
+        "delivery-route"
+      ],
+      "volume_per_month": 20,
+      "minutes_per_run": 40,
+      "current_state": "manual",
+      "automation": {
+        "decision_type": "judgement",
+        "input_form": "structured",
+        "interface": "ui_only",
+        "change_rate": "periodic",
+        "error_cost": "moderate",
+        "reversibility": "reversible",
+        "oversight": "sampled"
+      }
+    },
+    {
+      "id": "delivery-execution",
+      "name": "Drive the wholesale round",
+      "area": "logistics",
+      "description": "Load the van, do the drops, get the deliveries signed for.",
+      "owner": "ops-director",
+      "performers": [
+        "drivers"
+      ],
+      "trigger": "schedule",
+      "inputs": [
+        "delivery-route",
+        "finished-goods-stock"
+      ],
+      "outputs": [
+        "delivery-confirmation"
+      ],
+      "volume_per_month": 20,
+      "minutes_per_run": 300,
+      "current_state": "manual",
+      "automation": {
+        "decision_type": "deterministic",
+        "input_form": "structured",
+        "interface": "offline",
+        "change_rate": "stable",
+        "error_cost": "moderate",
+        "reversibility": "reversible",
+        "oversight": "sampled"
+      }
+    },
+    {
+      "id": "damage-claim",
+      "name": "File carrier damage claims",
+      "area": "logistics",
+      "description": "Put in a claim when a parcel arrives crushed, and chase it.",
+      "owner": "warehouse-lead",
+      "performers": [
+        "bookkeeper"
+      ],
+      "trigger": "event",
+      "inputs": [
+        "support-ticket",
+        "carrier-manifest"
+      ],
+      "outputs": [
+        "carrier-claim"
+      ],
+      "volume_per_month": 14,
+      "minutes_per_run": 30,
+      "current_state": "manual",
+      "automation": {
+        "decision_type": "deterministic",
+        "input_form": "semi_structured",
+        "interface": "ui_only",
+        "change_rate": "stable",
+        "error_cost": "low",
+        "reversibility": "reversible",
+        "oversight": "sampled"
+      }
+    },
+    {
+      "id": "packaging-reorder",
+      "name": "Reorder packaging",
+      "area": "logistics",
+      "description": "Order bags, boxes and valves before the shelf runs out mid-week.",
+      "owner": "warehouse-lead",
+      "performers": [
+        "warehouse-lead"
+      ],
+      "trigger": "schedule",
+      "inputs": [
+        "packaging-stock-level"
+      ],
+      "outputs": [
+        "purchase-order"
+      ],
+      "volume_per_month": 3,
+      "minutes_per_run": 45,
+      "current_state": "manual",
+      "automation": {
+        "decision_type": "deterministic",
+        "input_form": "structured",
+        "interface": "bulk_export",
+        "change_rate": "stable",
+        "error_cost": "moderate",
+        "reversibility": "reversible",
+        "oversight": "sampled"
+      }
+    },
+    {
+      "id": "invoice-issue",
+      "name": "Issue wholesale invoices",
+      "area": "finance",
+      "description": "Turn signed deliveries into invoices at the right price for each account.",
+      "owner": "finance-manager",
+      "performers": [
+        "bookkeeper"
+      ],
+      "trigger": "schedule",
+      "inputs": [
+        "delivery-confirmation",
+        "wholesale-price-list"
+      ],
+      "outputs": [
+        "sales-invoice"
+      ],
+      "volume_per_month": 620,
+      "minutes_per_run": 3,
+      "current_state": "assisted",
+      "automation": {
+        "decision_type": "deterministic",
+        "input_form": "structured",
+        "interface": "api",
+        "change_rate": "stable",
+        "error_cost": "moderate",
+        "reversibility": "reversible",
+        "oversight": "sampled"
+      }
+    },
+    {
+      "id": "payment-matching",
+      "name": "Match payments to invoices",
+      "area": "finance",
+      "description": "Work out which invoice each incoming payment is for, including the part payments.",
+      "owner": "finance-manager",
+      "performers": [
+        "bookkeeper"
+      ],
+      "trigger": "schedule",
+      "inputs": [
+        "bank-statement",
+        "sales-invoice"
+      ],
+      "outputs": [
+        "payment-allocation"
+      ],
+      "volume_per_month": 400,
+      "minutes_per_run": 2,
+      "current_state": "manual",
+      "automation": {
+        "decision_type": "deterministic",
+        "input_form": "structured",
+        "interface": "bulk_export",
+        "change_rate": "stable",
+        "error_cost": "moderate",
+        "reversibility": "reversible",
+        "oversight": "sampled"
+      }
+    },
+    {
+      "id": "debtor-chasing",
+      "name": "Chase overdue invoices",
+      "area": "finance",
+      "description": "Work the aged debt list and decide who gets a reminder and who gets a phone call.",
+      "owner": "finance-manager",
+      "performers": [
+        "bookkeeper"
+      ],
+      "trigger": "schedule",
+      "inputs": [
+        "payment-allocation",
+        "sales-invoice",
+        "customer-record"
+      ],
+      "outputs": [
+        "dunning-message"
+      ],
+      "volume_per_month": 45,
+      "minutes_per_run": 12,
+      "current_state": "manual",
+      "automation": {
+        "decision_type": "judgement",
+        "input_form": "structured",
+        "interface": "api",
+        "change_rate": "periodic",
+        "error_cost": "high",
+        "reversibility": "reversible",
+        "oversight": "every_case"
+      },
+      "notes": "A badly aimed reminder costs an account, so somebody looks at every one."
+    },
+    {
+      "id": "supplier-invoice-entry",
+      "name": "Enter supplier invoices",
+      "area": "finance",
+      "description": "Get supplier PDFs into the ledger against the right cost centre.",
+      "owner": "finance-manager",
+      "performers": [
+        "bookkeeper"
+      ],
+      "trigger": "event",
+      "inputs": [
+        "supplier-invoice"
+      ],
+      "outputs": [
+        "payable-record"
+      ],
+      "volume_per_month": 120,
+      "minutes_per_run": 6,
+      "current_state": "manual",
+      "automation": {
+        "decision_type": "deterministic",
+        "input_form": "semi_structured",
+        "interface": "api",
+        "change_rate": "stable",
+        "error_cost": "moderate",
+        "reversibility": "reversible",
+        "oversight": "sampled"
+      }
+    },
+    {
+      "id": "payment-run",
+      "name": "Pay suppliers",
+      "area": "finance",
+      "description": "Release the fortnightly payment run to the bank.",
+      "owner": "finance-manager",
+      "performers": [
+        "finance-manager",
+        "ops-director"
+      ],
+      "trigger": "schedule",
+      "inputs": [
+        "payable-record"
+      ],
+      "outputs": [
+        "outgoing-payment"
+      ],
+      "volume_per_month": 2,
+      "minutes_per_run": 90,
+      "current_state": "manual",
+      "automation": {
+        "decision_type": "deterministic",
+        "input_form": "structured",
+        "interface": "api",
+        "change_rate": "stable",
+        "error_cost": "severe",
+        "reversibility": "irreversible",
+        "oversight": "every_case"
+      },
+      "notes": "Every fact is machine-readable and it will still never run unattended."
+    },
+    {
+      "id": "monthly-close",
+      "name": "Close the month",
+      "area": "finance",
+      "description": "Reconcile, accrue, and produce the management accounts.",
+      "owner": "finance-manager",
+      "performers": [
+        "finance-manager",
+        "bookkeeper"
+      ],
+      "trigger": "schedule",
+      "inputs": [
+        "payment-allocation",
+        "payable-record",
+        "yield-report",
+        "green-stock-variance"
+      ],
+      "outputs": [
+        "management-accounts"
+      ],
+      "volume_per_month": 1,
+      "minutes_per_run": 900,
+      "current_state": "manual",
+      "automation": {
+        "decision_type": "judgement",
+        "input_form": "structured",
+        "interface": "bulk_export",
+        "change_rate": "periodic",
+        "error_cost": "high",
+        "reversibility": "costly_to_reverse",
+        "oversight": "every_case"
+      }
+    },
+    {
+      "id": "cost-model-update",
+      "name": "Update the cost per kilo",
+      "area": "finance",
+      "description": "Rebuild what each coffee actually costs once yield, freight and labour are in.",
+      "owner": "finance-manager",
+      "performers": [
+        "finance-manager"
+      ],
+      "trigger": "schedule",
+      "inputs": [
+        "green-contract",
+        "management-accounts",
+        "yield-report"
+      ],
+      "outputs": [
+        "cost-model"
+      ],
+      "volume_per_month": 1,
+      "minutes_per_run": 240,
+      "current_state": "manual",
+      "automation": {
+        "decision_type": "judgement",
+        "input_form": "structured",
+        "interface": "ui_only",
+        "change_rate": "periodic",
+        "error_cost": "high",
+        "reversibility": "reversible",
+        "oversight": "every_case"
+      }
+    },
+    {
+      "id": "vat-return",
+      "name": "File the VAT return",
+      "area": "finance",
+      "description": "Prepare and submit the quarterly return.",
+      "owner": "finance-manager",
+      "performers": [
+        "finance-manager"
+      ],
+      "trigger": "schedule",
+      "inputs": [
+        "management-accounts"
+      ],
+      "outputs": [
+        "tax-filing"
+      ],
+      "volume_per_month": 0.33,
+      "minutes_per_run": 240,
+      "current_state": "manual",
+      "automation": {
+        "decision_type": "deterministic",
+        "input_form": "structured",
+        "interface": "ui_only",
+        "change_rate": "stable",
+        "error_cost": "severe",
+        "reversibility": "irreversible",
+        "oversight": "regulatory"
+      }
+    },
+    {
+      "id": "payroll-run",
+      "name": "Run payroll",
+      "area": "people and facilities",
+      "description": "Turn timesheets and contracts into the monthly payroll file.",
+      "owner": "people-lead",
+      "performers": [
+        "people-lead",
+        "bookkeeper"
+      ],
+      "trigger": "schedule",
+      "inputs": [
+        "timesheet",
+        "employee-record"
+      ],
+      "outputs": [
+        "payroll-file"
+      ],
+      "volume_per_month": 1,
+      "minutes_per_run": 240,
+      "current_state": "manual",
+      "automation": {
+        "decision_type": "deterministic",
+        "input_form": "semi_structured",
+        "interface": "api",
+        "change_rate": "stable",
+        "error_cost": "severe",
+        "reversibility": "irreversible",
+        "oversight": "regulatory"
+      }
+    },
+    {
+      "id": "shift-rota",
+      "name": "Build the shift rota",
+      "area": "people and facilities",
+      "description": "Cover the roastery, the packing bench and the bar for the coming fortnight.",
+      "owner": "people-lead",
+      "performers": [
+        "people-lead",
+        "production-manager"
+      ],
+      "trigger": "schedule",
+      "inputs": [
+        "employee-record",
+        "roast-plan"
+      ],
+      "outputs": [
+        "shift-rota"
+      ],
+      "volume_per_month": 4,
+      "minutes_per_run": 75,
+      "current_state": "manual",
+      "automation": {
+        "decision_type": "judgement",
+        "input_form": "structured",
+        "interface": "ui_only",
+        "change_rate": "volatile",
+        "error_cost": "moderate",
+        "reversibility": "reversible",
+        "oversight": "every_case"
+      },
+      "notes": "Rewritten twice a week on average, because somebody is always ill."
+    },
+    {
+      "id": "hiring-screen",
+      "name": "Screen applications",
+      "area": "people and facilities",
+      "description": "Read applications for packing and barista roles and put a shortlist together.",
+      "owner": "people-lead",
+      "performers": [
+        "people-lead"
+      ],
+      "trigger": "event",
+      "inputs": [
+        "job-application"
+      ],
+      "outputs": [
+        "interview-shortlist"
+      ],
+      "volume_per_month": 40,
+      "minutes_per_run": 15,
+      "current_state": "manual",
+      "automation": {
+        "decision_type": "judgement",
+        "input_form": "unstructured",
+        "interface": "api",
+        "change_rate": "periodic",
+        "error_cost": "moderate",
+        "reversibility": "reversible",
+        "oversight": "every_case"
+      }
+    },
+    {
+      "id": "onboarding-new-starter",
+      "name": "Onboard a new starter",
+      "area": "people and facilities",
+      "description": "Contract, payroll, kit, keys, and the first week's training.",
+      "owner": null,
+      "performers": [],
+      "trigger": "event",
+      "inputs": [
+        "interview-shortlist"
+      ],
+      "outputs": [
+        "employee-record"
+      ],
+      "volume_per_month": 2,
+      "minutes_per_run": 180,
+      "current_state": "manual",
+      "automation": {
+        "decision_type": "judgement",
+        "input_form": "semi_structured",
+        "interface": "ui_only",
+        "change_rate": "periodic",
+        "error_cost": "moderate",
+        "reversibility": "reversible",
+        "oversight": "every_case"
+      },
+      "notes": "Nobody owns this. It gets done by whoever hired the person, differently each time."
+    },
+    {
+      "id": "equipment-service-scheduling",
+      "name": "Schedule equipment servicing",
+      "area": "people and facilities",
+      "description": "Book the six-month service on every grinder and machine out on loan.",
+      "owner": "ops-director",
+      "performers": [
+        "account-managers"
+      ],
+      "trigger": "schedule",
+      "inputs": [
+        "equipment-install-job",
+        "customer-record"
+      ],
+      "outputs": [
+        "service-visit"
+      ],
+      "volume_per_month": 25,
+      "minutes_per_run": 20,
+      "current_state": "manual",
+      "automation": {
+        "decision_type": "deterministic",
+        "input_form": "structured",
+        "interface": "ui_only",
+        "change_rate": "stable",
+        "error_cost": "moderate",
+        "reversibility": "reversible",
+        "oversight": "sampled"
+      }
+    },
+    {
+      "id": "facilities-maintenance",
+      "name": "Handle maintenance requests",
+      "area": "people and facilities",
+      "description": "Deal with whatever has broken in the roastery this week.",
+      "owner": "ops-director",
+      "performers": [
+        "ops-director"
+      ],
+      "trigger": "event",
+      "inputs": [
+        "maintenance-request"
+      ],
+      "outputs": [
+        "maintenance-log"
+      ],
+      "volume_per_month": 15,
+      "minutes_per_run": 45,
+      "current_state": "manual",
+      "automation": {
+        "decision_type": "discretionary",
+        "input_form": "unstructured",
+        "interface": "offline",
+        "change_rate": "volatile",
+        "error_cost": "moderate",
+        "reversibility": "reversible",
+        "oversight": "sampled"
+      }
+    }
+  ]
+}
