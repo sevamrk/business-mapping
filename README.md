@@ -1,5 +1,7 @@
 # business-mapping
 
+[![tests](https://github.com/sevamrk/business-mapping/actions/workflows/ci.yml/badge.svg)](https://github.com/sevamrk/business-mapping/actions/workflows/ci.yml)
+
 A format for writing down every function a company performs, and a tool that reads it and says
 which of those functions an agent could drive today, which are blocked, and what is blocking
 them.
