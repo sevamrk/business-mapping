@@ -28,4 +28,30 @@ report:           ## where the hours are and what is blocking them
 	$(PY) main.py report
 
 clean:
-	rm -rf $(VENV) .pytest_cache .ruff_cache **/__pycache__ *.egg-info
+	rm -rf $(VENV) .pytest_cache .ruff_cache **/__pycache__ *.egg-info web/dist web/node_modules
+
+# --- web/: the canvas. Needs Node 20.19 or newer ---------------------------------
+.PHONY: web-setup web-data web-test web-lint web-run web-build
+
+web-setup:        ## install the canvas's pinned dependencies
+	cd web && npm ci
+
+# The canvas reads this file instead of recomputing verdicts. Regenerate it after any
+# change to the map or the model; CI fails if the committed copy is stale. The env vars
+# are cleared so a local override cannot leak into the committed file.
+web-data:         ## rewrite web/src/data/report.json from the example map
+	env -u FUNCTION_MAP_PATH -u HOURS_PER_FTE_YEAR python3 main.py \
+		--map examples/harbourgate-coffee.json --json report > web/src/data/report.json.tmp
+	mv web/src/data/report.json.tmp web/src/data/report.json
+
+web-test:         ## model and data tests for the canvas. No browser
+	cd web && npm test
+
+web-lint:
+	cd web && npm run lint
+
+web-run:          ## dev server on http://localhost:5173
+	cd web && npm run dev
+
+web-build:        ## static site in web/dist
+	cd web && npm run build

@@ -1,0 +1,1112 @@
+{
+  "company": "Harbourgate Coffee Roasters",
+  "functions": 50,
+  "actors": 24,
+  "artifacts": 67,
+  "areas": 8,
+  "hours_per_year": 11003.8,
+  "hours_already_automated": 1803.0,
+  "recoverable_hours": 4047.8,
+  "recoverable_fte": 2.53,
+  "hours_per_fte_year": 1600.0,
+  "by_pattern": {
+    "agent_led": {
+      "functions": 12,
+      "hours": 1417.0,
+      "recoverable": 928.4
+    },
+    "agent_with_approval": {
+      "functions": 8,
+      "hours": 824.0,
+      "recoverable": 525.5
+    },
+    "assisted": {
+      "functions": 4,
+      "hours": 1432.0,
+      "recoverable": 582.1
+    },
+    "instrument_first": {
+      "functions": 16,
+      "hours": 5716.0,
+      "recoverable": 1966.8
+    },
+    "document_first": {
+      "functions": 1,
+      "hours": 180.0,
+      "recoverable": 45.0
+    },
+    "keep_human": {
+      "functions": 9,
+      "hours": 1434.8,
+      "recoverable": 0.0
+    }
+  },
+  "by_area": {
+    "green buying": {
+      "functions": 7,
+      "hours": 772.0,
+      "recoverable": 224.6,
+      "unowned": 0
+    },
+    "production": {
+      "functions": 6,
+      "hours": 2180.0,
+      "recoverable": 831.5,
+      "unowned": 0
+    },
+    "quality": {
+      "functions": 4,
+      "hours": 340.0,
+      "recoverable": 175.0,
+      "unowned": 0
+    },
+    "wholesale": {
+      "functions": 7,
+      "hours": 1764.0,
+      "recoverable": 417.1,
+      "unowned": 0
+    },
+    "direct to consumer": {
+      "functions": 7,
+      "hours": 2768.0,
+      "recoverable": 858.7,
+      "unowned": 0
+    },
+    "logistics": {
+      "functions": 5,
+      "hours": 1581.0,
+      "recoverable": 546.2,
+      "unowned": 0
+    },
+    "finance": {
+      "functions": 8,
+      "hours": 1063.8,
+      "recoverable": 756.9,
+      "unowned": 0
+    },
+    "people and facilities": {
+      "functions": 6,
+      "hours": 535.0,
+      "recoverable": 237.8,
+      "unowned": 1
+    }
+  },
+  "gaps": [
+    {
+      "code": "unowned_function",
+      "severity": "high",
+      "subject": "onboarding-new-starter",
+      "message": "'Onboard a new starter' has no owner, and it is 72 hours a year of work"
+    },
+    {
+      "code": "unsourced_input",
+      "severity": "high",
+      "subject": "packaging-stock-level",
+      "message": "'Packaging stock level' is used by 1 function(s) and nothing in the map produces it. Either a step is missing or it arrives from outside"
+    },
+    {
+      "code": "no_performer",
+      "severity": "medium",
+      "subject": "onboarding-new-starter",
+      "message": "'Onboard a new starter' has nobody listed as doing it"
+    },
+    {
+      "code": "orphan_output",
+      "severity": "medium",
+      "subject": "account-note",
+      "message": "'Account call note' is produced by 1 function(s) and nothing reads it. Work is being done for nobody, or the reader is unmapped"
+    },
+    {
+      "code": "orphan_output",
+      "severity": "medium",
+      "subject": "maintenance-log",
+      "message": "'Maintenance log' is produced by 1 function(s) and nothing reads it. Work is being done for nobody, or the reader is unmapped"
+    },
+    {
+      "code": "ready_and_untouched",
+      "severity": "medium",
+      "subject": "churn-watch",
+      "message": "'Spot accounts that went quiet' is done by hand and nothing about it is blocking: 44 hours a year"
+    },
+    {
+      "code": "ready_and_untouched",
+      "severity": "medium",
+      "subject": "failed-payment-recovery",
+      "message": "'Chase failed payments' is done by hand and nothing about it is blocking: 144 hours a year"
+    },
+    {
+      "code": "ready_and_untouched",
+      "severity": "medium",
+      "subject": "green-stock-count",
+      "message": "'Reconcile green stock' is done by hand and nothing about it is blocking: 67 hours a year"
+    },
+    {
+      "code": "ready_and_untouched",
+      "severity": "medium",
+      "subject": "packaging-reorder",
+      "message": "'Reorder packaging' is done by hand and nothing about it is blocking: 25 hours a year"
+    },
+    {
+      "code": "ready_and_untouched",
+      "severity": "medium",
+      "subject": "payment-matching",
+      "message": "'Match payments to invoices' is done by hand and nothing about it is blocking: 148 hours a year"
+    },
+    {
+      "code": "ready_and_untouched",
+      "severity": "medium",
+      "subject": "production-yield-review",
+      "message": "'Review roast yield' is done by hand and nothing about it is blocking: 22 hours a year"
+    },
+    {
+      "code": "ready_and_untouched",
+      "severity": "medium",
+      "subject": "supplier-invoice-entry",
+      "message": "'Enter supplier invoices' is done by hand and nothing about it is blocking: 133 hours a year"
+    },
+    {
+      "code": "single_point_of_failure",
+      "severity": "medium",
+      "subject": "bookkeeper",
+      "message": "'Bookkeeper' is the only person on 5 functions, 868 hours a year between them"
+    },
+    {
+      "code": "single_point_of_failure",
+      "severity": "medium",
+      "subject": "warehouse-lead",
+      "message": "'Warehouse Lead' is the only person on 5 functions, 425 hours a year between them"
+    },
+    {
+      "code": "dependency_loop",
+      "severity": "low",
+      "subject": "contract-negotiation",
+      "message": "these functions feed each other: contract-negotiation -> green-intake -> roast-plan -> green-demand-forecast -> contract-negotiation"
+    },
+    {
+      "code": "dependency_loop",
+      "severity": "low",
+      "subject": "cost-model-update",
+      "message": "these functions feed each other: cost-model-update -> price-list-update -> invoice-issue -> payment-matching -> monthly-close -> cost-model-update"
+    },
+    {
+      "code": "dependency_loop",
+      "severity": "low",
+      "subject": "roast-execution",
+      "message": "these functions feed each other: roast-execution -> roast-profile-tuning -> roast-execution"
+    },
+    {
+      "code": "dependency_loop",
+      "severity": "low",
+      "subject": "subscription-renewal-run",
+      "message": "these functions feed each other: subscription-renewal-run -> subscription-roster-build -> subscription-renewal-run"
+    },
+    {
+      "code": "idle_actor",
+      "severity": "low",
+      "subject": "accounting-system",
+      "message": "'Accounting System' is declared and owns or performs nothing"
+    }
+  ],
+  "functions_detail": [
+    {
+      "function": "sample-request",
+      "readiness": 0.63,
+      "axis_scores": {
+        "decision_type": 0.6,
+        "input_form": 0.7,
+        "interface": 0.3,
+        "change_rate": 1.0
+      },
+      "limiting_fact": "interface",
+      "risk_level": 1,
+      "risk_band": "moderate",
+      "pattern": "instrument_first",
+      "reason": "the only way in is a screen a person clicks",
+      "next_step": "ask the vendor for an API or a scheduled export",
+      "hours_per_year": 48.0,
+      "recoverable_hours": 30.2
+    },
+    {
+      "function": "sample-roast",
+      "readiness": 0.25,
+      "axis_scores": {
+        "decision_type": 1.0,
+        "input_form": 0.4,
+        "interface": 0.0,
+        "change_rate": 1.0
+      },
+      "limiting_fact": "interface",
+      "risk_level": 0,
+      "risk_band": "low",
+      "pattern": "instrument_first",
+      "reason": "the work happens somewhere no software can reach",
+      "next_step": "put the step into a system, or accept that only the paperwork around it can be handed over",
+      "hours_per_year": 200.0,
+      "recoverable_hours": 50.0
+    },
+    {
+      "function": "cupping-evaluation",
+      "readiness": 0.17,
+      "axis_scores": {
+        "decision_type": 0.1,
+        "input_form": 0.0,
+        "interface": 0.0,
+        "change_rate": 0.7
+      },
+      "limiting_fact": "input_form",
+      "risk_level": 2,
+      "risk_band": "high",
+      "pattern": "keep_human",
+      "reason": "nobody has written down the rule, because there isn't one",
+      "next_step": "leave it with a person; automate what feeds the decision instead",
+      "hours_per_year": 240.0,
+      "recoverable_hours": 0.0
+    },
+    {
+      "function": "green-demand-forecast",
+      "readiness": 0.745,
+      "axis_scores": {
+        "decision_type": 0.6,
+        "input_form": 1.0,
+        "interface": 0.7,
+        "change_rate": 0.7
+      },
+      "limiting_fact": "decision_type",
+      "risk_level": 1,
+      "risk_band": "moderate",
+      "pattern": "assisted",
+      "reason": "parts of it are machine-readable and parts are not",
+      "next_step": "automate the machine-readable parts and leave the decision",
+      "hours_per_year": 48.0,
+      "recoverable_hours": 35.8
+    },
+    {
+      "function": "contract-negotiation",
+      "readiness": 0.345,
+      "axis_scores": {
+        "decision_type": 0.1,
+        "input_form": 0.4,
+        "interface": 0.3,
+        "change_rate": 0.7
+      },
+      "limiting_fact": "decision_type",
+      "risk_level": 2,
+      "risk_band": "high",
+      "pattern": "keep_human",
+      "reason": "nobody has written down the rule, because there isn't one",
+      "next_step": "leave it with a person; automate what feeds the decision instead",
+      "hours_per_year": 108.0,
+      "recoverable_hours": 0.0
+    },
+    {
+      "function": "green-intake",
+      "readiness": 0.75,
+      "axis_scores": {
+        "decision_type": 1.0,
+        "input_form": 0.7,
+        "interface": 0.3,
+        "change_rate": 1.0
+      },
+      "limiting_fact": "interface",
+      "risk_level": 1,
+      "risk_band": "moderate",
+      "pattern": "instrument_first",
+      "reason": "the only way in is a screen a person clicks",
+      "next_step": "ask the vendor for an API or a scheduled export",
+      "hours_per_year": 56.0,
+      "recoverable_hours": 42.0
+    },
+    {
+      "function": "green-stock-count",
+      "readiness": 0.925,
+      "axis_scores": {
+        "decision_type": 1.0,
+        "input_form": 1.0,
+        "interface": 0.7,
+        "change_rate": 1.0
+      },
+      "limiting_fact": "interface",
+      "risk_level": 1,
+      "risk_band": "moderate",
+      "pattern": "agent_led",
+      "reason": "machine-readable input, a written rule, and a way in",
+      "next_step": "hand it over and sample the output",
+      "hours_per_year": 72.0,
+      "recoverable_hours": 66.6
+    },
+    {
+      "function": "roast-plan",
+      "readiness": 0.745,
+      "axis_scores": {
+        "decision_type": 0.6,
+        "input_form": 1.0,
+        "interface": 0.7,
+        "change_rate": 0.7
+      },
+      "limiting_fact": "decision_type",
+      "risk_level": 2,
+      "risk_band": "high",
+      "pattern": "agent_with_approval",
+      "reason": "a wrong answer is expensive or hard to undo",
+      "next_step": "let an agent prepare the whole thing and have a named person release it",
+      "hours_per_year": 120.0,
+      "recoverable_hours": 89.4
+    },
+    {
+      "function": "roast-execution",
+      "readiness": 0.825,
+      "axis_scores": {
+        "decision_type": 1.0,
+        "input_form": 1.0,
+        "interface": 0.3,
+        "change_rate": 1.0
+      },
+      "limiting_fact": "interface",
+      "risk_level": 2,
+      "risk_band": "high",
+      "pattern": "instrument_first",
+      "reason": "the only way in is a screen a person clicks",
+      "next_step": "ask the vendor for an API or a scheduled export",
+      "hours_per_year": 1144.0,
+      "recoverable_hours": 471.9
+    },
+    {
+      "function": "roast-profile-tuning",
+      "readiness": 0.345,
+      "axis_scores": {
+        "decision_type": 0.1,
+        "input_form": 0.4,
+        "interface": 0.3,
+        "change_rate": 0.7
+      },
+      "limiting_fact": "decision_type",
+      "risk_level": 2,
+      "risk_band": "high",
+      "pattern": "keep_human",
+      "reason": "nobody has written down the rule, because there isn't one",
+      "next_step": "leave it with a person; automate what feeds the decision instead",
+      "hours_per_year": 108.0,
+      "recoverable_hours": 0.0
+    },
+    {
+      "function": "batch-labelling",
+      "readiness": 1.0,
+      "axis_scores": {
+        "decision_type": 1.0,
+        "input_form": 1.0,
+        "interface": 1.0,
+        "change_rate": 1.0
+      },
+      "limiting_fact": "decision_type",
+      "risk_level": 1,
+      "risk_band": "moderate",
+      "pattern": "agent_led",
+      "reason": "machine-readable input, a written rule, and a way in",
+      "next_step": "hand it over and sample the output",
+      "hours_per_year": 208.0,
+      "recoverable_hours": 104.0
+    },
+    {
+      "function": "packaging-run",
+      "readiness": 0.25,
+      "axis_scores": {
+        "decision_type": 1.0,
+        "input_form": 1.0,
+        "interface": 0.0,
+        "change_rate": 1.0
+      },
+      "limiting_fact": "interface",
+      "risk_level": 1,
+      "risk_band": "moderate",
+      "pattern": "instrument_first",
+      "reason": "the work happens somewhere no software can reach",
+      "next_step": "put the step into a system, or accept that only the paperwork around it can be handed over",
+      "hours_per_year": 576.0,
+      "recoverable_hours": 144.0
+    },
+    {
+      "function": "production-yield-review",
+      "readiness": 0.925,
+      "axis_scores": {
+        "decision_type": 1.0,
+        "input_form": 1.0,
+        "interface": 0.7,
+        "change_rate": 1.0
+      },
+      "limiting_fact": "interface",
+      "risk_level": 1,
+      "risk_band": "moderate",
+      "pattern": "agent_led",
+      "reason": "machine-readable input, a written rule, and a way in",
+      "next_step": "hand it over and sample the output",
+      "hours_per_year": 24.0,
+      "recoverable_hours": 22.2
+    },
+    {
+      "function": "production-cupping",
+      "readiness": 0.25,
+      "axis_scores": {
+        "decision_type": 0.6,
+        "input_form": 0.0,
+        "interface": 0.0,
+        "change_rate": 1.0
+      },
+      "limiting_fact": "input_form",
+      "risk_level": 2,
+      "risk_band": "high",
+      "pattern": "document_first",
+      "reason": "the input only exists in somebody's head",
+      "next_step": "write down what they use to decide, then look at this again",
+      "hours_per_year": 180.0,
+      "recoverable_hours": 45.0
+    },
+    {
+      "function": "moisture-density-check",
+      "readiness": 0.825,
+      "axis_scores": {
+        "decision_type": 1.0,
+        "input_form": 1.0,
+        "interface": 0.3,
+        "change_rate": 1.0
+      },
+      "limiting_fact": "interface",
+      "risk_level": 1,
+      "risk_band": "moderate",
+      "pattern": "instrument_first",
+      "reason": "the only way in is a screen a person clicks",
+      "next_step": "ask the vendor for an API or a scheduled export",
+      "hours_per_year": 40.0,
+      "recoverable_hours": 33.0
+    },
+    {
+      "function": "customer-complaint-triage",
+      "readiness": 0.73,
+      "axis_scores": {
+        "decision_type": 0.6,
+        "input_form": 0.4,
+        "interface": 1.0,
+        "change_rate": 1.0
+      },
+      "limiting_fact": "input_form",
+      "risk_level": 2,
+      "risk_band": "high",
+      "pattern": "agent_with_approval",
+      "reason": "a wrong answer is expensive or hard to undo",
+      "next_step": "let an agent prepare the whole thing and have a named person release it",
+      "hours_per_year": 72.0,
+      "recoverable_hours": 52.6
+    },
+    {
+      "function": "traceability-audit",
+      "readiness": 0.925,
+      "axis_scores": {
+        "decision_type": 1.0,
+        "input_form": 1.0,
+        "interface": 0.7,
+        "change_rate": 1.0
+      },
+      "limiting_fact": "interface",
+      "risk_level": 3,
+      "risk_band": "critical",
+      "pattern": "agent_with_approval",
+      "reason": "a wrong answer is expensive or hard to undo",
+      "next_step": "let an agent prepare the whole thing and have a named person release it",
+      "hours_per_year": 48.0,
+      "recoverable_hours": 44.4
+    },
+    {
+      "function": "wholesale-order-intake",
+      "readiness": 0.73,
+      "axis_scores": {
+        "decision_type": 0.6,
+        "input_form": 0.4,
+        "interface": 1.0,
+        "change_rate": 1.0
+      },
+      "limiting_fact": "input_form",
+      "risk_level": 1,
+      "risk_band": "moderate",
+      "pattern": "assisted",
+      "reason": "parts of it are machine-readable and parts are not",
+      "next_step": "automate the machine-readable parts and leave the decision",
+      "hours_per_year": 744.0,
+      "recoverable_hours": 271.6
+    },
+    {
+      "function": "standing-order-generation",
+      "readiness": 1.0,
+      "axis_scores": {
+        "decision_type": 1.0,
+        "input_form": 1.0,
+        "interface": 1.0,
+        "change_rate": 1.0
+      },
+      "limiting_fact": "decision_type",
+      "risk_level": 0,
+      "risk_band": "low",
+      "pattern": "agent_led",
+      "reason": "machine-readable input, a written rule, and a way in",
+      "next_step": "hand it over and sample the output",
+      "hours_per_year": 72.0,
+      "recoverable_hours": 0.0
+    },
+    {
+      "function": "new-account-onboarding",
+      "readiness": 0.57,
+      "axis_scores": {
+        "decision_type": 0.6,
+        "input_form": 0.7,
+        "interface": 0.3,
+        "change_rate": 0.7
+      },
+      "limiting_fact": "interface",
+      "risk_level": 2,
+      "risk_band": "high",
+      "pattern": "instrument_first",
+      "reason": "the only way in is a screen a person clicks",
+      "next_step": "ask the vendor for an API or a scheduled export",
+      "hours_per_year": 96.0,
+      "recoverable_hours": 54.7
+    },
+    {
+      "function": "account-check-in",
+      "readiness": 0.25,
+      "axis_scores": {
+        "decision_type": 0.1,
+        "input_form": 0.4,
+        "interface": 0.0,
+        "change_rate": 1.0
+      },
+      "limiting_fact": "interface",
+      "risk_level": 1,
+      "risk_band": "moderate",
+      "pattern": "keep_human",
+      "reason": "nobody has written down the rule, because there isn't one",
+      "next_step": "leave it with a person; automate what feeds the decision instead",
+      "hours_per_year": 300.0,
+      "recoverable_hours": 0.0
+    },
+    {
+      "function": "price-list-update",
+      "readiness": 0.645,
+      "axis_scores": {
+        "decision_type": 0.6,
+        "input_form": 1.0,
+        "interface": 0.3,
+        "change_rate": 0.7
+      },
+      "limiting_fact": "interface",
+      "risk_level": 2,
+      "risk_band": "high",
+      "pattern": "instrument_first",
+      "reason": "the only way in is a screen a person clicks",
+      "next_step": "ask the vendor for an API or a scheduled export",
+      "hours_per_year": 72.0,
+      "recoverable_hours": 46.4
+    },
+    {
+      "function": "churn-watch",
+      "readiness": 0.925,
+      "axis_scores": {
+        "decision_type": 1.0,
+        "input_form": 1.0,
+        "interface": 0.7,
+        "change_rate": 1.0
+      },
+      "limiting_fact": "interface",
+      "risk_level": 1,
+      "risk_band": "moderate",
+      "pattern": "agent_led",
+      "reason": "machine-readable input, a written rule, and a way in",
+      "next_step": "hand it over and sample the output",
+      "hours_per_year": 48.0,
+      "recoverable_hours": 44.4
+    },
+    {
+      "function": "barista-training-visit",
+      "readiness": 0.25,
+      "axis_scores": {
+        "decision_type": 0.1,
+        "input_form": 0.4,
+        "interface": 0.0,
+        "change_rate": 1.0
+      },
+      "limiting_fact": "interface",
+      "risk_level": 1,
+      "risk_band": "moderate",
+      "pattern": "keep_human",
+      "reason": "nobody has written down the rule, because there isn't one",
+      "next_step": "leave it with a person; automate what feeds the decision instead",
+      "hours_per_year": 432.0,
+      "recoverable_hours": 0.0
+    },
+    {
+      "function": "subscription-renewal-run",
+      "readiness": 1.0,
+      "axis_scores": {
+        "decision_type": 1.0,
+        "input_form": 1.0,
+        "interface": 1.0,
+        "change_rate": 1.0
+      },
+      "limiting_fact": "decision_type",
+      "risk_level": 2,
+      "risk_band": "high",
+      "pattern": "agent_with_approval",
+      "reason": "a wrong answer is expensive or hard to undo",
+      "next_step": "let an agent prepare the whole thing and have a named person release it",
+      "hours_per_year": 140.0,
+      "recoverable_hours": 0.0
+    },
+    {
+      "function": "failed-payment-recovery",
+      "readiness": 1.0,
+      "axis_scores": {
+        "decision_type": 1.0,
+        "input_form": 1.0,
+        "interface": 1.0,
+        "change_rate": 1.0
+      },
+      "limiting_fact": "decision_type",
+      "risk_level": 1,
+      "risk_band": "moderate",
+      "pattern": "agent_led",
+      "reason": "machine-readable input, a written rule, and a way in",
+      "next_step": "hand it over and sample the output",
+      "hours_per_year": 144.0,
+      "recoverable_hours": 144.0
+    },
+    {
+      "function": "dtc-order-picking",
+      "readiness": 0.25,
+      "axis_scores": {
+        "decision_type": 1.0,
+        "input_form": 1.0,
+        "interface": 0.0,
+        "change_rate": 1.0
+      },
+      "limiting_fact": "interface",
+      "risk_level": 1,
+      "risk_band": "moderate",
+      "pattern": "instrument_first",
+      "reason": "the work happens somewhere no software can reach",
+      "next_step": "put the step into a system, or accept that only the paperwork around it can be handed over",
+      "hours_per_year": 1760.0,
+      "recoverable_hours": 440.0
+    },
+    {
+      "function": "product-page-copy",
+      "readiness": 0.745,
+      "axis_scores": {
+        "decision_type": 0.6,
+        "input_form": 0.7,
+        "interface": 1.0,
+        "change_rate": 0.7
+      },
+      "limiting_fact": "decision_type",
+      "risk_level": 1,
+      "risk_band": "moderate",
+      "pattern": "assisted",
+      "reason": "parts of it are machine-readable and parts are not",
+      "next_step": "automate the machine-readable parts and leave the decision",
+      "hours_per_year": 108.0,
+      "recoverable_hours": 80.5
+    },
+    {
+      "function": "subscription-roster-build",
+      "readiness": 1.0,
+      "axis_scores": {
+        "decision_type": 1.0,
+        "input_form": 1.0,
+        "interface": 1.0,
+        "change_rate": 1.0
+      },
+      "limiting_fact": "decision_type",
+      "risk_level": 1,
+      "risk_band": "moderate",
+      "pattern": "agent_led",
+      "reason": "machine-readable input, a written rule, and a way in",
+      "next_step": "hand it over and sample the output",
+      "hours_per_year": 36.0,
+      "recoverable_hours": 0.0
+    },
+    {
+      "function": "dtc-support-replies",
+      "readiness": 0.73,
+      "axis_scores": {
+        "decision_type": 0.6,
+        "input_form": 0.4,
+        "interface": 1.0,
+        "change_rate": 1.0
+      },
+      "limiting_fact": "input_form",
+      "risk_level": 1,
+      "risk_band": "moderate",
+      "pattern": "assisted",
+      "reason": "parts of it are machine-readable and parts are not",
+      "next_step": "automate the machine-readable parts and leave the decision",
+      "hours_per_year": 532.0,
+      "recoverable_hours": 194.2
+    },
+    {
+      "function": "subscription-feedback-review",
+      "readiness": 0.345,
+      "axis_scores": {
+        "decision_type": 0.1,
+        "input_form": 0.4,
+        "interface": 0.3,
+        "change_rate": 0.7
+      },
+      "limiting_fact": "decision_type",
+      "risk_level": 1,
+      "risk_band": "moderate",
+      "pattern": "keep_human",
+      "reason": "nobody has written down the rule, because there isn't one",
+      "next_step": "leave it with a person; automate what feeds the decision instead",
+      "hours_per_year": 48.0,
+      "recoverable_hours": 0.0
+    },
+    {
+      "function": "carrier-booking",
+      "readiness": 1.0,
+      "axis_scores": {
+        "decision_type": 1.0,
+        "input_form": 1.0,
+        "interface": 1.0,
+        "change_rate": 1.0
+      },
+      "limiting_fact": "decision_type",
+      "risk_level": 1,
+      "risk_band": "moderate",
+      "pattern": "agent_led",
+      "reason": "machine-readable input, a written rule, and a way in",
+      "next_step": "hand it over and sample the output",
+      "hours_per_year": 110.0,
+      "recoverable_hours": 55.0
+    },
+    {
+      "function": "wholesale-delivery-routing",
+      "readiness": 0.645,
+      "axis_scores": {
+        "decision_type": 0.6,
+        "input_form": 1.0,
+        "interface": 0.3,
+        "change_rate": 0.7
+      },
+      "limiting_fact": "interface",
+      "risk_level": 1,
+      "risk_band": "moderate",
+      "pattern": "instrument_first",
+      "reason": "the only way in is a screen a person clicks",
+      "next_step": "ask the vendor for an API or a scheduled export",
+      "hours_per_year": 160.0,
+      "recoverable_hours": 103.2
+    },
+    {
+      "function": "delivery-execution",
+      "readiness": 0.25,
+      "axis_scores": {
+        "decision_type": 1.0,
+        "input_form": 1.0,
+        "interface": 0.0,
+        "change_rate": 1.0
+      },
+      "limiting_fact": "interface",
+      "risk_level": 1,
+      "risk_band": "moderate",
+      "pattern": "instrument_first",
+      "reason": "the work happens somewhere no software can reach",
+      "next_step": "put the step into a system, or accept that only the paperwork around it can be handed over",
+      "hours_per_year": 1200.0,
+      "recoverable_hours": 300.0
+    },
+    {
+      "function": "damage-claim",
+      "readiness": 0.75,
+      "axis_scores": {
+        "decision_type": 1.0,
+        "input_form": 0.7,
+        "interface": 0.3,
+        "change_rate": 1.0
+      },
+      "limiting_fact": "interface",
+      "risk_level": 1,
+      "risk_band": "moderate",
+      "pattern": "instrument_first",
+      "reason": "the only way in is a screen a person clicks",
+      "next_step": "ask the vendor for an API or a scheduled export",
+      "hours_per_year": 84.0,
+      "recoverable_hours": 63.0
+    },
+    {
+      "function": "packaging-reorder",
+      "readiness": 0.925,
+      "axis_scores": {
+        "decision_type": 1.0,
+        "input_form": 1.0,
+        "interface": 0.7,
+        "change_rate": 1.0
+      },
+      "limiting_fact": "interface",
+      "risk_level": 1,
+      "risk_band": "moderate",
+      "pattern": "agent_led",
+      "reason": "machine-readable input, a written rule, and a way in",
+      "next_step": "hand it over and sample the output",
+      "hours_per_year": 27.0,
+      "recoverable_hours": 25.0
+    },
+    {
+      "function": "invoice-issue",
+      "readiness": 1.0,
+      "axis_scores": {
+        "decision_type": 1.0,
+        "input_form": 1.0,
+        "interface": 1.0,
+        "change_rate": 1.0
+      },
+      "limiting_fact": "decision_type",
+      "risk_level": 1,
+      "risk_band": "moderate",
+      "pattern": "agent_led",
+      "reason": "machine-readable input, a written rule, and a way in",
+      "next_step": "hand it over and sample the output",
+      "hours_per_year": 372.0,
+      "recoverable_hours": 186.0
+    },
+    {
+      "function": "payment-matching",
+      "readiness": 0.925,
+      "axis_scores": {
+        "decision_type": 1.0,
+        "input_form": 1.0,
+        "interface": 0.7,
+        "change_rate": 1.0
+      },
+      "limiting_fact": "interface",
+      "risk_level": 1,
+      "risk_band": "moderate",
+      "pattern": "agent_led",
+      "reason": "machine-readable input, a written rule, and a way in",
+      "next_step": "hand it over and sample the output",
+      "hours_per_year": 160.0,
+      "recoverable_hours": 148.0
+    },
+    {
+      "function": "debtor-chasing",
+      "readiness": 0.82,
+      "axis_scores": {
+        "decision_type": 0.6,
+        "input_form": 1.0,
+        "interface": 1.0,
+        "change_rate": 0.7
+      },
+      "limiting_fact": "decision_type",
+      "risk_level": 2,
+      "risk_band": "high",
+      "pattern": "agent_with_approval",
+      "reason": "a wrong answer is expensive or hard to undo",
+      "next_step": "let an agent prepare the whole thing and have a named person release it",
+      "hours_per_year": 108.0,
+      "recoverable_hours": 88.6
+    },
+    {
+      "function": "supplier-invoice-entry",
+      "readiness": 0.925,
+      "axis_scores": {
+        "decision_type": 1.0,
+        "input_form": 0.7,
+        "interface": 1.0,
+        "change_rate": 1.0
+      },
+      "limiting_fact": "input_form",
+      "risk_level": 1,
+      "risk_band": "moderate",
+      "pattern": "agent_led",
+      "reason": "machine-readable input, a written rule, and a way in",
+      "next_step": "hand it over and sample the output",
+      "hours_per_year": 144.0,
+      "recoverable_hours": 133.2
+    },
+    {
+      "function": "payment-run",
+      "readiness": 1.0,
+      "axis_scores": {
+        "decision_type": 1.0,
+        "input_form": 1.0,
+        "interface": 1.0,
+        "change_rate": 1.0
+      },
+      "limiting_fact": "decision_type",
+      "risk_level": 3,
+      "risk_band": "critical",
+      "pattern": "agent_with_approval",
+      "reason": "a wrong answer is expensive or hard to undo",
+      "next_step": "let an agent prepare the whole thing and have a named person release it",
+      "hours_per_year": 36.0,
+      "recoverable_hours": 36.0
+    },
+    {
+      "function": "monthly-close",
+      "readiness": 0.745,
+      "axis_scores": {
+        "decision_type": 0.6,
+        "input_form": 1.0,
+        "interface": 0.7,
+        "change_rate": 0.7
+      },
+      "limiting_fact": "decision_type",
+      "risk_level": 2,
+      "risk_band": "high",
+      "pattern": "agent_with_approval",
+      "reason": "a wrong answer is expensive or hard to undo",
+      "next_step": "let an agent prepare the whole thing and have a named person release it",
+      "hours_per_year": 180.0,
+      "recoverable_hours": 134.1
+    },
+    {
+      "function": "cost-model-update",
+      "readiness": 0.645,
+      "axis_scores": {
+        "decision_type": 0.6,
+        "input_form": 1.0,
+        "interface": 0.3,
+        "change_rate": 0.7
+      },
+      "limiting_fact": "interface",
+      "risk_level": 2,
+      "risk_band": "high",
+      "pattern": "instrument_first",
+      "reason": "the only way in is a screen a person clicks",
+      "next_step": "ask the vendor for an API or a scheduled export",
+      "hours_per_year": 48.0,
+      "recoverable_hours": 31.0
+    },
+    {
+      "function": "vat-return",
+      "readiness": 0.825,
+      "axis_scores": {
+        "decision_type": 1.0,
+        "input_form": 1.0,
+        "interface": 0.3,
+        "change_rate": 1.0
+      },
+      "limiting_fact": "interface",
+      "risk_level": 3,
+      "risk_band": "critical",
+      "pattern": "keep_human",
+      "reason": "a person is required to sign each case",
+      "next_step": "automate the preparation, keep the signature",
+      "hours_per_year": 15.8,
+      "recoverable_hours": 0.0
+    },
+    {
+      "function": "payroll-run",
+      "readiness": 0.925,
+      "axis_scores": {
+        "decision_type": 1.0,
+        "input_form": 0.7,
+        "interface": 1.0,
+        "change_rate": 1.0
+      },
+      "limiting_fact": "input_form",
+      "risk_level": 3,
+      "risk_band": "critical",
+      "pattern": "keep_human",
+      "reason": "a person is required to sign each case",
+      "next_step": "automate the preparation, keep the signature",
+      "hours_per_year": 48.0,
+      "recoverable_hours": 0.0
+    },
+    {
+      "function": "shift-rota",
+      "readiness": 0.565,
+      "axis_scores": {
+        "decision_type": 0.6,
+        "input_form": 1.0,
+        "interface": 0.3,
+        "change_rate": 0.3
+      },
+      "limiting_fact": "interface",
+      "risk_level": 2,
+      "risk_band": "high",
+      "pattern": "instrument_first",
+      "reason": "the only way in is a screen a person clicks",
+      "next_step": "ask the vendor for an API or a scheduled export",
+      "hours_per_year": 60.0,
+      "recoverable_hours": 33.9
+    },
+    {
+      "function": "hiring-screen",
+      "readiness": 0.67,
+      "axis_scores": {
+        "decision_type": 0.6,
+        "input_form": 0.4,
+        "interface": 1.0,
+        "change_rate": 0.7
+      },
+      "limiting_fact": "input_form",
+      "risk_level": 2,
+      "risk_band": "high",
+      "pattern": "agent_with_approval",
+      "reason": "a wrong answer is expensive or hard to undo",
+      "next_step": "let an agent prepare the whole thing and have a named person release it",
+      "hours_per_year": 120.0,
+      "recoverable_hours": 80.4
+    },
+    {
+      "function": "onboarding-new-starter",
+      "readiness": 0.57,
+      "axis_scores": {
+        "decision_type": 0.6,
+        "input_form": 0.7,
+        "interface": 0.3,
+        "change_rate": 0.7
+      },
+      "limiting_fact": "interface",
+      "risk_level": 2,
+      "risk_band": "high",
+      "pattern": "instrument_first",
+      "reason": "the only way in is a screen a person clicks",
+      "next_step": "ask the vendor for an API or a scheduled export",
+      "hours_per_year": 72.0,
+      "recoverable_hours": 41.0
+    },
+    {
+      "function": "equipment-service-scheduling",
+      "readiness": 0.825,
+      "axis_scores": {
+        "decision_type": 1.0,
+        "input_form": 1.0,
+        "interface": 0.3,
+        "change_rate": 1.0
+      },
+      "limiting_fact": "interface",
+      "risk_level": 1,
+      "risk_band": "moderate",
+      "pattern": "instrument_first",
+      "reason": "the only way in is a screen a person clicks",
+      "next_step": "ask the vendor for an API or a scheduled export",
+      "hours_per_year": 100.0,
+      "recoverable_hours": 82.5
+    },
+    {
+      "function": "facilities-maintenance",
+      "readiness": 0.19,
+      "axis_scores": {
+        "decision_type": 0.1,
+        "input_form": 0.4,
+        "interface": 0.0,
+        "change_rate": 0.3
+      },
+      "limiting_fact": "interface",
+      "risk_level": 1,
+      "risk_band": "moderate",
+      "pattern": "keep_human",
+      "reason": "nobody has written down the rule, because there isn't one",
+      "next_step": "leave it with a person; automate what feeds the decision instead",
+      "hours_per_year": 135.0,
+      "recoverable_hours": 0.0
+    }
+  ]
+}
