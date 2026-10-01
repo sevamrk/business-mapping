@@ -1,10 +1,15 @@
+import { createHash } from 'node:crypto';
 import { describe, expect, it } from 'vitest';
+import { canonicalJson, mapDigest, sha256Hex } from '../src/digest.js';
 import {
   FINDINGS_ID, ModelError, ROOT_ID, UNLOCKS_ID, buildModel, checkConsistency, patternFilter,
 } from '../src/model.js';
-import { PARTLY, SCREEN, fixtureMap, fixtureReport } from './fixture.js';
+import {
+  FIXTURE_MAP_SHA256, PARTLY, SCREEN, fixtureMap, fixtureReport,
+} from './fixture.js';
 
 const model = () => buildModel(fixtureMap(), fixtureReport());
+const STALE = 'the map has changed since the report was made (its map_sha256 no longer matches)';
 
 describe('checkConsistency: a report from a different map is refused, not rendered', () => {
   it('passes the matching pair', () => {
@@ -23,6 +28,7 @@ describe('checkConsistency: a report from a different map is refused, not render
     const m = fixtureMap();
     m.functions = m.functions.filter((f) => f.id !== 'step-e');
     expect(checkConsistency(m, fixtureReport())).toEqual([
+      STALE,
       'function "step-e" is in the report and not in the map',
     ]);
   });
@@ -31,6 +37,7 @@ describe('checkConsistency: a report from a different map is refused, not render
     const m = fixtureMap();
     m.functions[0].volume_per_month = 20; // 24 h/yr now, the report still says 12
     expect(checkConsistency(m, fixtureReport())).toEqual([
+      STALE,
       'function "step-a": map gives 24 h/yr, report says 12',
     ]);
   });
@@ -66,6 +73,38 @@ describe('checkConsistency: a report from a different map is refused, not render
     const r = fixtureReport();
     r.gaps[0].code = 'new_kind_of_gap';
     expect(checkConsistency(fixtureMap(), r)).toEqual(['finding code "new_kind_of_gap" is not one the canvas knows']);
+  });
+
+  // Every check above reads a field the canvas happens to look at. A map can change in
+  // any other field, a fact, an owner, an artifact, and move the verdicts while every id,
+  // hour and pattern name still lines up. The report carries a hash of the whole map.
+  it('catches a fact edited after the report was made, which moves no hours', () => {
+    const m = fixtureMap();
+    m.functions[0].automation.interface = 'api'; // could change the verdict; hours stay 12
+    expect(checkConsistency(m, fixtureReport())).toEqual([STALE]);
+  });
+
+  it('catches an owner or an artifact name edited after the report was made', () => {
+    const owner = fixtureMap();
+    owner.functions[1].owner = 'clerk';
+    expect(checkConsistency(owner, fixtureReport())).toEqual([STALE]);
+    const art = fixtureMap();
+    art.artifacts[0].name = 'Renamed document';
+    expect(checkConsistency(art, fixtureReport())).toEqual([STALE]);
+  });
+
+  it('refuses a report with no map hash, rather than trusting it', () => {
+    const r = fixtureReport();
+    delete r.map_sha256;
+    expect(checkConsistency(fixtureMap(), r)).toEqual([
+      'the report carries no map_sha256, so it cannot be checked against the map',
+    ]);
+  });
+
+  it('does not care about key order or whitespace, only content', () => {
+    const m = fixtureMap();
+    const reordered = Object.fromEntries(Object.entries(m).reverse());
+    expect(checkConsistency(reordered, fixtureReport())).toEqual([]);
   });
 
   it('makes buildModel throw with the fix in the message', () => {
@@ -240,5 +279,26 @@ describe('searchNodes', () => {
 describe('artifact', () => {
   it('lists producers and consumers as node ids', () => {
     expect(model().artifact('mid')).toMatchObject({ name: 'Middle record', producers: ['fn:step-a'], consumers: ['fn:step-b'] });
+  });
+});
+
+describe('the map digest agrees with the Python tool and with SHA-256', () => {
+  it('is SHA-256: the FIPS test vectors, and node:crypto on multi-block and non-ASCII input', () => {
+    expect(sha256Hex('')).toBe('e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855');
+    expect(sha256Hex('abc')).toBe('ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad');
+    for (const s of ['x'.repeat(55), 'x'.repeat(56), 'x'.repeat(64), 'Café ☕ '.repeat(40)]) {
+      expect(sha256Hex(s)).toBe(createHash('sha256').update(s, 'utf8').digest('hex'));
+    }
+  });
+
+  it('gives the hash the Python digest() gives, written down from Python', () => {
+    expect(mapDigest(fixtureMap())).toBe(FIXTURE_MAP_SHA256);
+    // integral floats, non-ASCII, a control character, null and a boolean, from loader.digest()
+    expect(mapDigest({ d: true, c: null, b: [2.5, 'é\n'], a: 1.0 }))
+      .toBe('d1a4c1d2afca928b25f816fb41d85e7147b9cddeda7e052e6dfec7329d25151a');
+  });
+
+  it('sorts keys at every depth', () => {
+    expect(canonicalJson({ b: { y: 1, x: [{ q: 1, p: 2 }] }, a: 0 })).toBe('{"a":0,"b":{"x":[{"p":2,"q":1}],"y":1}}');
   });
 });

@@ -17,7 +17,7 @@ import sys
 
 from . import config, gaps, graph, report
 from .automatability import assess, rank
-from .loader import MapError, load
+from .loader import MapError, digest_file, load
 
 OK = 0
 FOUND_PROBLEMS = 1
@@ -97,13 +97,13 @@ def main(argv=None, stdout=None) -> int:
         return FOUND_PROBLEMS
 
     try:
-        return _dispatch(args, fmap, out)
+        return _dispatch(args, fmap, out, path)
     except config.ConfigError as exc:
         print(exc, file=out)
         return CANNOT_RUN
 
 
-def _dispatch(args, fmap, out) -> int:
+def _dispatch(args, fmap, out, path) -> int:
     if args.command == "validate":
         if args.json:
             print(
@@ -159,6 +159,7 @@ def _dispatch(args, fmap, out) -> int:
     if args.command == "report":
         if args.json:
             payload = report.summarise(fmap)
+            payload["map_sha256"] = digest_file(path)
             payload["gaps"] = [dataclasses.asdict(f) for f in gaps.find(fmap)]
             payload["functions_detail"] = [
                 {"function": fn.id} | dataclasses.asdict(assess(fn)) for fn in fmap.functions

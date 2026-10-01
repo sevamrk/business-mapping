@@ -7,6 +7,7 @@ import { forceSimulation, forceManyBody, forceLink, forceCollide, forceX, forceY
 import { nodeTypes } from './nodes.jsx';
 import { MODEL } from './data.js';
 import { ROOT_ID, UNLOCKS_ID, FINDINGS_ID, areaNodeId, functionNodeId, patternFilter } from './model.js';
+import { createAutoFit, edgesWithEnds, hoverClasses, hoverStillOn } from './view.js';
 import {
   CAPABILITY_FACTS, CURRENT_STATES, GAP_CODES, PATTERNS, PATTERN_ORDER, RISK_BANDS, SEVERITY,
 } from './vocab.js';
@@ -297,7 +298,7 @@ function Canvas() {
   const simRef = useRef(null);
   const simNodesRef = useRef([]);
   const histRef = useRef([]);
-  const draggedRef = useRef(false);
+  const camRef = useRef(createAutoFit(() => {}));
 
   const rootId = path[path.length - 1];
   // a hover belongs to the tier it happened on
@@ -305,11 +306,18 @@ function Canvas() {
   if (hoverTier !== rootId) { setHoverTier(rootId); setHover(null); }
   const isVisible = useMemo(() => patternFilter(patOn), [patOn]);
   const tier = useMemo(() => MODEL.buildTierGraph(rootId, isVisible), [rootId, isVisible]);
+  // the filter can take the hovered node off the tier, and a removed node never fires mouseleave
+  const keptHover = hoverStillOn(hover, tier.nodes);
+  if (keptHover !== hover) setHover(keptHover);
 
   useEffect(() => {
     const n = tier.nodes;
     const e = tier.edges;
     if (simRef.current) { simRef.current.stop(); simRef.current = null; }
+    // a fresh camera per tier and layout: it fits until the user drags something on it.
+    // It takes over only when its own nodes land, so a drag on the tier still showing
+    // while ELK works holds the old camera, not this one.
+    const cam = createAutoFit((opts) => rf.fitView(opts));
 
     if (layout === 'tree') {
       let alive = true;
@@ -317,9 +325,10 @@ function Canvas() {
       elkLayout(n, e).then((laid) => {
         if (!alive) return;
         // edges land with the laid-out nodes, never before them
-        setEdges(e);
+        camRef.current = cam;
+        setEdges(edgesWithEnds(laid, e));
         setNodes(laid);
-        tId = setTimeout(() => rf.fitView({ padding: 0.2, duration: 420 }), 60);
+        tId = setTimeout(() => cam.fit({ padding: 0.2, duration: 420 }), 60);
       }).catch((err) => {
         // the chunk failed to load or ELK threw: say so and fall back rather than freeze
         console.error('tree layout failed, back to live', err);
@@ -344,9 +353,10 @@ function Canvas() {
     // This effect drives an external simulation, and the new tier's edges have to land in
     // the same commit as its first node positions or React Flow draws edges to nodes that
     // are not there yet. Setting both here is the synchronisation, not a slip.
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    setEdges(e);
-    setNodes(toRF());
+    const first = toRF();
+    camRef.current = cam;
+    setEdges(edgesWithEnds(first, e));
+    setNodes(first);
 
     const sim = forceSimulation(sims)
       .velocityDecay(0.5)
@@ -365,12 +375,11 @@ function Canvas() {
       const x = byId.get(nd.id);
       return x ? { ...nd, position: { x: x.x, y: x.y } } : nd;
     })));
-    // fit when the tier settles, unless the user has dragged something on it: a drag
-    // restarts the simulation, and the camera must stay on what they just arranged
-    draggedRef.current = false;
-    sim.on('end', () => { if (!draggedRef.current) rf.fitView({ padding: 0.24, duration: 480 }); });
+    // fit when the tier is drawn and when it settles; both go through the camera, which
+    // skips them once the user has dragged something (the timer used to fit regardless)
+    sim.on('end', () => cam.fit({ padding: 0.24, duration: 480 }));
     simRef.current = sim;
-    const ft = setTimeout(() => rf.fitView({ padding: 0.24, duration: 600 }), 500);
+    const ft = setTimeout(() => cam.fit({ padding: 0.24, duration: 600 }), 500);
     return () => { sim.stop(); clearTimeout(ft); };
   }, [tier, layout, rf]);
 
@@ -378,10 +387,10 @@ function Canvas() {
 
   // dragging pins a node in the simulation; letting go releases it back to the forces
   const onNodeDrag = useCallback((_, node) => {
+    camRef.current.hold(); // in either layout, a drag means the camera stays where it is
     if (layout !== 'live') return;
     const s = simNodesRef.current.find((x) => x.id === node.id);
     if (s) { s.fx = node.position.x; s.fy = node.position.y; }
-    draggedRef.current = true;
     if (simRef.current) simRef.current.alphaTarget(0.2).restart();
   }, [layout]);
   const onNodeDragStop = useCallback((_, node) => {
@@ -466,17 +475,10 @@ function Canvas() {
   }, [rf]);
 
   const styledNodes = useMemo(() => {
-    let hot = null;
-    // a node the filter just removed never fires mouseleave, so a hover on it is ignored
-    if (hover && nodes.some((n) => n.id === hover)) {
-      hot = new Set([hover, rootId]);
-      for (const e of edges) {
-        if (e.kind === 'flow' && (e.source === hover || e.target === hover)) { hot.add(e.source); hot.add(e.target); }
-      }
-    }
+    const cls = hoverClasses(nodes, edges, hover, rootId);
     return nodes.map((n) => ({
       ...n,
-      className: hot ? (hot.has(n.id) ? 'rf-hot' : 'rf-dim') : undefined,
+      className: cls ? cls.get(n.id) : undefined,
       selected: !!(selected && n.id === selected.id),
     }));
   }, [nodes, selected, hover, rootId, edges]);

@@ -8,6 +8,7 @@ import json
 import pytest
 
 from src.cli import CANNOT_RUN, FOUND_PROBLEMS, OK, main
+from src.loader import digest, digest_file
 from tests.conftest import EXAMPLE
 
 
@@ -184,6 +185,31 @@ def test_report_json_carries_a_verdict_for_every_function():
     _, raw = run("--map", str(EXAMPLE), "--json", "report")
     payload = json.loads(raw)
     assert len(payload["functions_detail"]) == payload["functions"]
+
+
+def test_report_json_names_the_map_it_was_made_from():
+    # The canvas compares this with its own digest of the map. web/test pins the same
+    # value for a fixture, so a change to either canonical form breaks one side or the other.
+    _, raw = run("--map", str(EXAMPLE), "--json", "report")
+    assert json.loads(raw)["map_sha256"] == digest_file(EXAMPLE)
+
+
+def test_the_map_digest_ignores_layout_and_sees_every_value():
+    a = digest({"b": [1, 2.0], "a": "é"})
+    assert a == digest({"a": "é", "b": [1.0, 2]})  # key order and 2.0 vs 2: JS cannot tell
+    assert a != digest({"a": "é", "b": [2, 1]})
+    assert a != digest({"a": "e", "b": [1, 2]})
+
+
+def test_the_map_digest_writes_numbers_the_way_javascript_does():
+    # JSON.stringify output, copied from node. json.dumps gives 1e-05, 1e+16 and 1.0.
+    from src.loader import _js_number
+
+    cases = {
+        0.00001: "0.00001", 1e-7: "1e-7", 1e16: "10000000000000000", 1e21: "1e+21",
+        12.0: "12", 2.5: "2.5", -0.0001: "-0.0001", 0: "0", 10**17: "100000000000000000",
+    }
+    assert {v: _js_number(v) for v in cases} == cases
 
 
 # --- settings ---------------------------------------------------------------

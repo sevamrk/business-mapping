@@ -66,9 +66,15 @@ export function fixtureMap() {
   };
 }
 
+// What src/loader.py's digest() gives for fixtureMap(), computed by the Python side and
+// written here by hand, so the JavaScript digest is checked against the other
+// implementation rather than against itself. Edit the map above and this must change.
+export const FIXTURE_MAP_SHA256 = '3213fe7f747889d32450af50b2e1b92e844ac363a6732716495ea305d7b696f0';
+
 export function fixtureReport() {
   return {
     company: 'Fixture',
+    map_sha256: FIXTURE_MAP_SHA256,
     functions: 5,
     actors: 2,
     artifacts: 5,

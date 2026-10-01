@@ -13,6 +13,7 @@
 //
 // Pure: no React, no DOM, no imports of data. Everything here runs under vitest in Node.
 
+import { mapDigest } from './digest.js';
 import { GAP_CODES, PATTERNS } from './vocab.js';
 
 export const ROOT_ID = 'root';
@@ -47,8 +48,17 @@ export class ModelError extends Error {}
 
 // A report produced from a different version of the map is the failure this guards.
 // It loads without complaint and quietly shows the wrong verdicts, so refuse it.
+//
+// The hash is the check that covers everything: report.map_sha256 is the Python tool's
+// digest of the map it read, and any edit anywhere in the map changes it. The field checks
+// after it stay because they say WHAT moved, which a hash cannot.
 export function checkConsistency(map, report) {
   const problems = [];
+  if (!report.map_sha256) {
+    problems.push('the report carries no map_sha256, so it cannot be checked against the map');
+  } else if (report.map_sha256 !== mapDigest(map)) {
+    problems.push('the map has changed since the report was made (its map_sha256 no longer matches)');
+  }
   if (report.company !== map.company) {
     problems.push(`report is for "${report.company}", map is "${map.company}"`);
   }

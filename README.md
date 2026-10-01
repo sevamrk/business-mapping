@@ -179,10 +179,11 @@ make web-build     # a static site in web/dist
 findings come from `python3 main.py --json report`, saved as `web/src/data/report.json`. The
 map itself is read in place from `examples/`. A second implementation of the ladder in
 JavaScript would drift from the tested Python one sooner or later, and a canvas showing a
-different verdict from the CLI is worse than no canvas. So the canvas refuses a report that
-doesn't match the map (a function missing on either side, hours that no longer agree, or a
-finding about something the map no longer has),
-and CI regenerates the report and fails if the committed copy is stale. After changing the
+different verdict from the CLI is worse than no canvas. So the report carries a SHA-256 of
+the map it was made from, the canvas hashes the map it bundles the same way, and it refuses
+the pair if the two differ. It then names what moved where it can: a function missing on
+either side, hours that no longer agree, or a finding about something the map no longer has.
+CI regenerates the report and fails if the committed copy is stale. After changing the
 map, run `make web-data`.
 
 What you can do on it: drill in and out, with a breadcrumb and a back button that remembers
