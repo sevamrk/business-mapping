@@ -197,7 +197,7 @@ are artifacts one hands to another.
 | What's weaker here | The detail |
 |---|---|
 | **It shows one map, fixed at build time** | The map and report are bundled into the site. There is no file picker and no upload, so pointing it at your own map means `make web-data` and a rebuild |
-| **The tests cover the model, not the screen** | 50 vitest tests pin how the tree, the unlocks ranking, the findings and the search are built. Nothing tests the rendered page in CI. It was checked by driving a headless browser through every view, which is a manual step |
+| **The tests cover the model, not the screen** | The vitest suite pins how the tree, the unlocks ranking, the findings and the search are built. Nothing tests the rendered page in CI. It was checked by driving a headless browser through every view, which is a manual step |
 | **It is a desktop tool** | Below about 760px the sidebar stacks above the canvas and everything still works, but a tier of eight function cards is not readable on a phone, and touch input has not been tried |
 | **Unlocks ranks by hours behind the blocker, not hours it would free** | The report says how many hours sit behind "the only way in is a screen". It does not say how many would become recoverable once there is an API, because that needs the model rerun with the fact changed. The ranking is a proxy |
 | **ELK is most of the download** | The base bundle is about 130 kB gzipped. The layered layout adds about 440 kB, loaded only the first time someone picks Tree |
