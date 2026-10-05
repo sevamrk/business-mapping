@@ -162,6 +162,8 @@ stop exercising the tool.
 
 ## The canvas in `web/`
 
+**Live demo:** https://sevamrk.github.io/business-mapping/ (the example company only, rebuilt whenever `web/` changes).
+
 A React front end that lets you walk the example map instead of reading it as text. It
 opens on the company, and each click goes one level down: company, area, function. Two
 extra views sit beside the areas. **Unlocks** groups every function by the one thing
